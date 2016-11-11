@@ -1,0 +1,49 @@
+<?php
+
+namespace MRS\SgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Logradouro
+ *
+ * @ORM\Table(name="logradouro", indexes={@ORM\Index(name="fk_logradouro_pais_idx", columns={"pais_id"})})
+ * @ORM\Entity
+ */
+class Logradouro
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep", type="string", length=10, nullable=true)
+     */
+    private $cep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="logradouro", type="text", length=65535, nullable=true)
+     */
+    private $logradouro;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \MRS\SgeBundle\Entity\Pais
+     *
+     * @ORM\ManyToOne(targetEntity="MRS\SgeBundle\Entity\Pais")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="pais_id", referencedColumnName="id")
+     * })
+     */
+    private $pais;
+
+
+}

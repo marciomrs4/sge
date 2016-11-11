@@ -1,0 +1,67 @@
+<?php
+
+namespace MRS\SgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Pais
+ *
+ * @ORM\Table(name="pais")
+ * @ORM\Entity
+ */
+class Pais
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone1", type="string", length=50, nullable=false)
+     */
+    private $telefone1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone2", type="string", length=50, nullable=true)
+     */
+    private $telefone2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rg", type="string", length=50, nullable=true)
+     */
+    private $rg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=50, nullable=true)
+     */
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=1, nullable=false)
+     */
+    private $status;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

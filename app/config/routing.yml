@@ -1,0 +1,46 @@
+mrs_sge_aluno:
+    resource: "@MRSSgeBundle/Controller/AlunoController.php"
+    type:     annotation
+
+mrs_sge_informacao_complementar:
+    resource: "@MRSSgeBundle/Controller/InformacaoComplementarController.php"
+    type:     annotation
+
+mrs_sge_veiculo:
+    resource: "@MRSSgeBundle/Controller/VeiculoController.php"
+    type:     annotation
+
+mrs_sge_escola:
+    resource: "@MRSSgeBundle/Controller/EscolaController.php"
+    type:     annotation
+
+mrs_sge_escola:
+    resource: "@MRSSgeBundle/Controller/EscolaController.php"
+    type:     annotation
+
+mrs_sge_escola:
+    resource: "@MRSSgeBundle/Controller/EscolaController.php"
+    type:     annotation
+
+mrs_sge_escola:
+    resource: "@MRSSgeBundle/Controller/EscolaController.php"
+    type:     annotation
+
+mrs_sge_turno:
+    resource: "@MRSSgeBundle/Controller/TurnoController.php"
+    type:     annotation
+
+mrs_sge_pais:
+    resource: "@MRSSgeBundle/Controller/PaisController.php"
+    type:     annotation
+
+mrs_sge:
+    resource: "@MRSSgeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user_user:
+    resource: "@UserBundle/Controller/UserController.php"
+    type:     annotation
+
+mrs_user:
+    resource: "@UserBundle/Resources/config/routing.yml"

@@ -1,0 +1,44 @@
+{% block extends %}
+    {{ "{% extends ':template:template.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+
+    {{ "{% block contentheader %}" }}
+
+    <section class="content-header">
+        <h1>
+            {{ entity }}
+            <small>Novo</small>
+        </h1>
+    </section>
+
+    {{ "{% endblock %}" }}
+
+
+    {{ "{% block panelheading %}" }}
+
+    {% set hide_edit, hide_delete = true, true %}
+    {{ include('crud/views/others/record_actions.html.twig.twig') -}}
+
+    {{ "{% endblock %}" }}
+
+
+    {{ "{% block panelbody %}" }}
+
+    {{ '{{ form_start(form) }}' }}
+    {{ '{{ form_widget(form) }}' }}
+
+    {{ "{% endblock %}" }}
+
+    {{ '{% block panelfooter %}' }}
+    <div class="input-load">
+        <button type="submit" class="btn btn-primary btn-sm input-search">
+            <span class="glyphicon glyphicon-floppy-disk"></span>
+            Salvar
+        </button>
+    </div>
+    {{ '{{ form_end(form) }}' }}
+
+    {{ "{% endblock %}" }}
+{% endblock body %}

@@ -1,0 +1,7 @@
+home:
+    path:     /home
+    defaults: { _controller: MRSSgeBundle:Default:index }
+
+mrs_sge_p:
+    resource: "@MRSSgeBundle/Controller/"
+    type:     annotation

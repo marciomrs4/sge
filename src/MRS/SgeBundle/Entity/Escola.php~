@@ -1,0 +1,46 @@
+<?php
+
+namespace MRS\SgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Escola
+ *
+ * @ORM\Table(name="escola")
+ * @ORM\Entity
+ */
+class Escola
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endereco", type="string", length=255, nullable=true)
+     */
+    private $endereco;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefone", type="string", length=45, nullable=true)
+     */
+    private $telefone;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}

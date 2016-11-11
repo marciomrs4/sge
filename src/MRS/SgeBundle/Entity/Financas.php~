@@ -1,0 +1,56 @@
+<?php
+
+namespace MRS\SgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Financas
+ *
+ * @ORM\Table(name="financas", indexes={@ORM\Index(name="alu_codigo_on_alu_codigo_idx", columns={"aluno_id"})})
+ * @ORM\Entity
+ */
+class Financas
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor_mensalidade", type="decimal", precision=10, scale=2, nullable=false)
+     */
+    private $valorMensalidade;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="vencimento", type="date", nullable=false)
+     */
+    private $vencimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pagamento", type="string", length=1, nullable=false)
+     */
+    private $pagamento;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \MRS\SgeBundle\Entity\Aluno
+     *
+     * @ORM\ManyToOne(targetEntity="MRS\SgeBundle\Entity\Aluno")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aluno_id", referencedColumnName="id")
+     * })
+     */
+    private $aluno;
+
+
+}

@@ -1,0 +1,56 @@
+<?php
+
+namespace MRS\SgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * InformacaoComplementar
+ *
+ * @ORM\Table(name="informacao_complementar", indexes={@ORM\Index(name="fk_informacao_complementar_aluno1_idx", columns={"aluno_id"})})
+ * @ORM\Entity
+ */
+class InformacaoComplementar
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="professor", type="string", length=50, nullable=true)
+     */
+    private $professor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="problemas_saude", type="string", length=255, nullable=true)
+     */
+    private $problemasSaude;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacao", type="text", length=65535, nullable=true)
+     */
+    private $observacao;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \MRS\SgeBundle\Entity\Aluno
+     *
+     * @ORM\ManyToOne(targetEntity="MRS\SgeBundle\Entity\Aluno")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="aluno_id", referencedColumnName="id")
+     * })
+     */
+    private $aluno;
+
+
+}
