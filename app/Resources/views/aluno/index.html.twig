@@ -39,7 +39,6 @@
             <th>Ações</th>
             <th>Nome</th>
             <th>Datanascimento</th>
-            <th>Responsavelid</th>
             <th>Valormensalidade</th>
             <th>Vencimento</th>
             <th>Serie</th>
@@ -62,7 +61,6 @@
                 </td>
                 <td><a href="{{ path('cadastro_aluno_show', { 'id': aluno.id }) }}">{{ aluno.nome }}</a></td>
                 <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ aluno.responsavelId }}</td>
                 <td>{{ aluno.valorMensalidade }}</td>
                 <td>{% if aluno.vencimento %}{{ aluno.vencimento|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ aluno.serie }}</td>

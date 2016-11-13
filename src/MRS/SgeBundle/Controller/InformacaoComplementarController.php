@@ -42,9 +42,19 @@ class InformacaoComplementarController extends Controller
      */
     public function newAction(Aluno $aluno, Request $request)
     {
+
+        $informacaoComplementarExistente = $this->getDoctrine()
+            ->getRepository('MRSSgeBundle:InformacaoComplementar')
+            ->findOneBy(array('aluno' => $aluno));
+
+        if($informacaoComplementarExistente){
+            return $this->redirectToRoute('cadastro_informacaocomplementar_show',array('id' => $informacaoComplementarExistente->getId()));
+        }
+
         $informacaoComplementar = new InformacaoComplementar();
         $form = $this->createForm('MRS\SgeBundle\Form\InformacaoComplementarType', $informacaoComplementar);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -73,11 +83,9 @@ class InformacaoComplementarController extends Controller
      */
     public function showAction(InformacaoComplementar $informacaoComplementar)
     {
-        $deleteForm = $this->createDeleteForm($informacaoComplementar);
 
         return $this->render('informacaocomplementar/show.html.twig', array(
             'informacaoComplementar' => $informacaoComplementar,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

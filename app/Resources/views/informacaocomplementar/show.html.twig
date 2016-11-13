@@ -36,9 +36,9 @@
 
     <div class="col-md-2 col-sm-3 col-xs-3">
 
-        <a href="{{ path('cadastro_informacaocomplementar_index') }}" class="btn btn-primary btn-sm link-search">
+        <a href="{{ path('cadastro_aluno_show', { 'id' : informacaoComplementar.aluno.id }) }}" class="btn btn-primary btn-sm link-search">
             <span class="fa fa-reply"></span>
-            Voltar
+            Mostrar Aluno
         </a>
 
     </div>
@@ -51,12 +51,6 @@
 
         </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
-            {{ form_start(delete_form) }}
-            <button type="submit" class="btn btn-danger btn-sm remover-form">
-                <span class="glyphicon glyphicon-trash"></span>
-                Deletar
-            </button>
-            {{ form_end(delete_form) }}
 
         </div>
 </div>{% endblock %}

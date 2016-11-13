@@ -56,6 +56,14 @@
                 Informação Complementar
             </a>
         </div>
+
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            <a href="{{ path('cadastro_contratos_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
+                <span class="fa fa-plus"></span>
+                Contrato
+            </a>
+        </div>
+
 </div>{% endblock %}
 
 
@@ -72,10 +80,6 @@
                 <tr>
                     <th>Datanascimento</th>
                         <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('Y-m-d') }}{% endif %}</td>
-                </tr>
-                <tr>
-                    <th>Responsavelid</th>
-                        <td>{{ aluno.responsavelId }}</td>
                 </tr>
                 <tr>
                     <th>Valormensalidade</th>

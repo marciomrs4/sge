@@ -1,0 +1,86 @@
+    {% extends ':template:template.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+        <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+
+{% endblock %}
+
+
+    {% block contentheader %}
+
+
+    <section class="content-header">
+        <h1>
+            VeiculoHasEscola
+            <small>Listar</small>
+        </h1>
+    </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+        <a href="{{ path('cadastro_veiculohasescola_new',{ 'escola' : escola.id }) }}" class="btn btn-primary btn-sm link-search">
+            <span class="glyphicon glyphicon-plus"></span>
+            Novo
+        </a>
+
+        <a href="{{ path('cadastro_escola_show',{ 'id' : escola.id }) }}" class="btn btn-primary btn-sm link-search">
+            <span class="glyphicon glyphicon-plus"></span>
+            Mostrar Escola
+        </a>
+
+    {% endblock %}
+
+    {% block panelbody %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+            <thead>
+            <tr>
+                <th>Ações</th>
+                <th>Placa</th>
+                <th>Modelo</th>
+                <th>Titulo</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for veiculoHasEscola in veiculoHasEscolas %}
+            <tr>
+                <td>
+                    <a href="{{ path('cadastro_veiculohasescola_edit', { 'id': veiculoHasEscola.id }) }}" class="btn btn-primary btn-sm link-search">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        edit
+                    </a>
+                </td>
+                <td>
+                    {{ veiculoHasEscola.veiculo.placa }}
+                </td>
+                <td>
+                    {{ veiculoHasEscola.veiculo.modelo }}
+                </td>
+                <td>
+                    {{ veiculoHasEscola.veiculo.titulo }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {% endblock %}
+
+
+{% block javascripts %}
+{{ parent() }}
+
+    <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/mrs-dataTable.js") }}"></script>
+
+
+{% endblock %}

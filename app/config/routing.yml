@@ -1,3 +1,11 @@
+mrs_sge_veiculo_has_escola:
+    resource: "@MRSSgeBundle/Controller/VeiculoHasEscolaController.php"
+    type:     annotation
+
+mrs_sge_contratos:
+    resource: "@MRSSgeBundle/Controller/ContratosController.php"
+    type:     annotation
+
 mrs_sge_aluno:
     resource: "@MRSSgeBundle/Controller/AlunoController.php"
     type:     annotation

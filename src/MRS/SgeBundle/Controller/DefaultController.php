@@ -11,4 +11,10 @@ class DefaultController extends Controller
     {
         return $this->render('MRSSgeBundle:Default:index.html.twig');
     }
+
+    public function homeAction()
+    {
+        return $this->render(':template:base.html.twig');
+    }
+
 }

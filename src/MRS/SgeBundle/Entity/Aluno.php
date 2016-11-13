@@ -3,6 +3,7 @@
 namespace MRS\SgeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Aluno
@@ -16,6 +17,7 @@ class Aluno
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="O campo nome é obrigatório")
      */
     private $nome;
 
@@ -25,13 +27,6 @@ class Aluno
      * @ORM\Column(name="data_nascimento", type="date", nullable=false)
      */
     private $dataNascimento;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="responsavel_id", type="integer", nullable=false)
-     */
-    private $responsavelId;
 
     /**
      * @var string
@@ -153,29 +148,6 @@ class Aluno
     public function getDataNascimento()
     {
         return $this->dataNascimento;
-    }
-
-    /**
-     * Set responsavelId
-     *
-     * @param integer $responsavelId
-     * @return Aluno
-     */
-    public function setResponsavelId($responsavelId)
-    {
-        $this->responsavelId = $responsavelId;
-
-        return $this;
-    }
-
-    /**
-     * Get responsavelId
-     *
-     * @return integer 
-     */
-    public function getResponsavelId()
-    {
-        return $this->responsavelId;
     }
 
     /**

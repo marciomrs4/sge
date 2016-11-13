@@ -1,6 +1,9 @@
 home:
     path:     /home
-    defaults: { _controller: MRSSgeBundle:Default:index }
+    defaults: { _controller: MRSSgeBundle:Default:home }
+index:
+    path:     /
+    defaults: { _controller: MRSSgeBundle:Default:home }
 
 mrs_sge_p:
     resource: "@MRSSgeBundle/Controller/"

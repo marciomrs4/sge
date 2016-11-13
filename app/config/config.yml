@@ -36,6 +36,13 @@ twig:
       - bootstrap_3_layout.html.twig
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        namesystem: 'Gestão Escolar'
+        sigla: 'GE'
+        company: 'InfTek'
+        phrase: 'Tudo ao seu favor'
+        version: 1.0.0
+        teamcreator: 'SGE'
 
 # Doctrine Configuration
 doctrine:

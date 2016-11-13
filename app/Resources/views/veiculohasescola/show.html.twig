@@ -6,7 +6,7 @@
 
     <section class="content-header">
         <h1>
-            Escola
+            VeiculoHasEscola
             <small>Mostrar</small>
         </h1>
     </section>
@@ -36,7 +36,7 @@
 
     <div class="col-md-2 col-sm-3 col-xs-3">
 
-        <a href="{{ path('cadastro_escola_index') }}" class="btn btn-primary btn-sm link-search">
+        <a href="{{ path('cadastro_veiculohasescola_index') }}" class="btn btn-primary btn-sm link-search">
             <span class="fa fa-reply"></span>
             Voltar
         </a>
@@ -44,17 +44,14 @@
     </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
 
-            <a href="{{ path('cadastro_escola_edit', { 'id': escola.id }) }}" class="btn btn-primary btn-sm link-search">
+            <a href="{{ path('cadastro_veiculohasescola_edit', { 'id': veiculoHasEscola.id }) }}" class="btn btn-primary btn-sm link-search">
                 <span class="glyphicon glyphicon-edit"></span>
                 Editar
             </a>
 
         </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
-            <a href="{{ path('cadastro_veiculohasescola_new', { 'escola': escola.id }) }}" class="btn btn-primary btn-sm link-search">
-                <span class="glyphicon glyphicon-edit"></span>
-                Adicionar Veiculo
-            </a>
+
         </div>
 </div>{% endblock %}
 
@@ -66,20 +63,8 @@
         <table class="table table-bordered table-condensed">
             <tbody>
                 <tr>
-                    <th>Nome</th>
-                        <td>{{ escola.nome }}</td>
-                </tr>
-                <tr>
-                    <th>Endereco</th>
-                        <td>{{ escola.endereco }}</td>
-                </tr>
-                <tr>
-                    <th>Telefone</th>
-                        <td>{{ escola.telefone }}</td>
-                </tr>
-                <tr>
                     <th>Id</th>
-                        <td>{{ escola.id }}</td>
+                        <td>{{ veiculoHasEscola.id }}</td>
                 </tr>
             </tbody>
         </table>

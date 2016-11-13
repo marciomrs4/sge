@@ -19,8 +19,6 @@ class AlunoType extends AbstractType
                                            'attr'=>array('class'=>'input-sm')))
             ->add('dataNascimento',null,array('label'=>'dataNascimento',
                                            'attr'=>array('class'=>'input-sm')))
-            ->add('responsavelId',null,array('label'=>'responsavelId',
-                                           'attr'=>array('class'=>'input-sm')))
             ->add('valorMensalidade',null,array('label'=>'valorMensalidade',
                                            'attr'=>array('class'=>'input-sm')))
             ->add('vencimento',null,array('label'=>'vencimento',
