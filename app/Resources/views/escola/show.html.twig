@@ -26,7 +26,6 @@
     </div>
     {% endfor %}
 
-
     {% endblock %}
 
 
@@ -52,8 +51,14 @@
         </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
             <a href="{{ path('cadastro_veiculohasescola_new', { 'escola': escola.id }) }}" class="btn btn-primary btn-sm link-search">
-                <span class="glyphicon glyphicon-edit"></span>
+                <span class="glyphicon glyphicon-plus"></span>
                 Adicionar Veiculo
+            </a>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-3">
+            <a href="{{ path('cadastro_turnohasescola_new', { 'escola': escola.id }) }}" class="btn btn-primary btn-sm link-search">
+                <span class="glyphicon glyphicon-plus"></span>
+                Adicionar Turno
             </a>
         </div>
 </div>{% endblock %}
@@ -75,15 +80,22 @@
                 </tr>
                 <tr>
                     <th>Telefone</th>
-                        <td>{{ escola.telefone }}</td>
-                </tr>
-                <tr>
-                    <th>Id</th>
-                        <td>{{ escola.id }}</td>
+                    <td>{{ escola.telefone }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
+    {% endblock %}
+
+    {% block lastrow %}
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            {{ render(controller('MRSSgeBundle:VeiculoHasEscola:index',{ 'escola' : escola.id })) }}
+        </div>
+
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            {{ render(controller('MRSSgeBundle:TurnoHasEscola:index',{ 'escola' : escola.id })) }}
+        </div>
 
     {% endblock %}

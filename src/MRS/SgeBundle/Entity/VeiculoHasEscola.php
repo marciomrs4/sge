@@ -3,6 +3,7 @@
 namespace MRS\SgeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * VeiculoHasEscola
@@ -28,6 +29,7 @@ class VeiculoHasEscola
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="veiculo_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank(message="Veiculo é obrigatório")
      */
     private $veiculo;
 
@@ -38,6 +40,7 @@ class VeiculoHasEscola
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="escola_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank(message="Escola é obrigatória")
      */
     private $escola;
 

@@ -1,10 +1,10 @@
-    {% extends ':template:template.html.twig' %}
+{% extends ':template:template.html.twig' %}
 
 {% block stylesheets %}
 
     {{ parent() }}
 
-        <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+    <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
 
 {% endblock %}
 
@@ -12,64 +12,62 @@
     {% block contentheader %}
 
 
-    <section class="content-header">
-        <h1>
-            Escola
-            <small>Listar</small>
-        </h1>
-    </section>
+        <section class="content-header">
+            <h1>
+                Escola
+                <small>Listar</small>
+            </h1>
+        </section>
 
 
     {% endblock %}
 
 
     {% block panelheading %}
-    <a href="{{ path('cadastro_escola_new') }}" class="btn btn-primary btn-sm link-search">
+        <a href="{{ path('cadastro_escola_new') }}" class="btn btn-primary btn-sm link-search">
             <span class="glyphicon glyphicon-plus"></span>
             Novo
         </a>    {% endblock %}
 
     {% block panelbody %}
-    <div class="table-responsive">
-        <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
-            <thead>
-            <tr>
-                <th>Ações</th>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Ações</th>
                     <th>Nome</th>
                     <th>Endereco</th>
                     <th>Telefone</th>
-                    <th>Id</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for escola in escolas %}
-            <tr>
+                </tr>
+                </thead>
+                <tbody>
+                {% for escola in escolas %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('cadastro_escola_show', { 'id': escola.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Mostrar
+                            </a>
+                            <a href="{{ path('cadastro_escola_edit', { 'id': escola.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Editar
+                            </a>
+                        </td>
                         <td><a href="{{ path('cadastro_escola_show', { 'id': escola.id }) }}">{{ escola.nome }}</a></td>
                         <td>{{ escola.endereco }}</td>
                         <td>{{ escola.telefone }}</td>
-                        <td>{{ escola.id }}</td>
-                        <td>
-                                <a href="{{ path('cadastro_escola_show', { 'id': escola.id }) }}" class="btn btn-primary btn-sm link-search">
-                                    <span class="glyphicon glyphicon-show"></span>
-                                    show
-                                </a>
-                                <a href="{{ path('cadastro_escola_edit', { 'id': escola.id }) }}" class="btn btn-primary btn-sm link-search">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                    edit
-                                </a>
-                        </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
 
     {% endblock %}
 
 
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
 
     <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
     <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>

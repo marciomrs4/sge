@@ -79,15 +79,15 @@
                 </tr>
                 <tr>
                     <th>Datanascimento</th>
-                        <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('d-m-Y') }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Valormensalidade</th>
-                        <td>{{ aluno.valorMensalidade }}</td>
+                        <td>{{ aluno.valorMensalidade|number_format(2,',','.') }}</td>
                 </tr>
                 <tr>
                     <th>Vencimento</th>
-                        <td>{% if aluno.vencimento %}{{ aluno.vencimento|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if aluno.vencimento %}{{ aluno.vencimento|date('d-m-Y') }}{% endif %}</td>
                 </tr>
                 <tr>
                     <th>Serie</th>
@@ -98,12 +98,22 @@
                         <td>{{ aluno.sala }}</td>
                 </tr>
                 <tr>
-                    <th>Status</th>
-                        <td>{{ aluno.status }}</td>
+                    <th>Escola</th>
+                    <td>{{ aluno.escola.nome }}</td>
                 </tr>
                 <tr>
-                    <th>Id</th>
-                        <td>{{ aluno.id }}</td>
+                    <th>Turno</th>
+                    <td>{{ aluno.turno.descricao }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        {% if aluno.status == 1 %}
+                            Ativo
+                        {% else %}
+                            Inativo
+                        {% endif %}
+                    </td>
                 </tr>
             </tbody>
         </table>

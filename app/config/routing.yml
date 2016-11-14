@@ -1,3 +1,11 @@
+mrs_sge_logradouro:
+    resource: "@MRSSgeBundle/Controller/LogradouroController.php"
+    type:     annotation
+
+mrs_sge_turno_has_escola:
+    resource: "@MRSSgeBundle/Controller/TurnoHasEscolaController.php"
+    type:     annotation
+
 mrs_sge_veiculo_has_escola:
     resource: "@MRSSgeBundle/Controller/VeiculoHasEscolaController.php"
     type:     annotation

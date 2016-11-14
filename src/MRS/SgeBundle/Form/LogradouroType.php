@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VeiculoHasEscolaType extends AbstractType
+class LogradouroType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,7 +14,13 @@ class VeiculoHasEscolaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder
+            ->add('cep',null,array('label'=>'cep',
+                                           'attr'=>array('class'=>'input-sm')))
+            ->add('logradouro',null,array('label'=>'logradouro',
+                                           'attr'=>array('class'=>'input-sm')))
 
+        ;
     }
     
     
@@ -25,7 +31,7 @@ class VeiculoHasEscolaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MRS\SgeBundle\Entity\VeiculoHasEscola'
+            'data_class' => 'MRS\SgeBundle\Entity\Logradouro'
         ));
     }
 }

@@ -3,6 +3,7 @@
 namespace MRS\SgeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * TurnoHasEscola
@@ -28,6 +29,7 @@ class TurnoHasEscola
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="turno_id", referencedColumnName="id")
      * })
+     * @Assert\NotBlank(message="Turno é obrigatório")
      */
     private $turno;
 

@@ -69,11 +69,8 @@ class EscolaController extends Controller
      */
     public function showAction(Escola $escola)
     {
-        $deleteForm = $this->createDeleteForm($escola);
-
         return $this->render('escola/show.html.twig', array(
             'escola' => $escola,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

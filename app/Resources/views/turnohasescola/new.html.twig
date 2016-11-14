@@ -5,7 +5,7 @@
 
         <section class="content-header">
             <h1>
-                VeiculoHasEscola
+                TurnoHasEscola
                 <small>Novo</small>
             </h1>
         </section>
@@ -19,13 +19,12 @@
 
             <div class="col-md-2 col-sm-3 col-xs-3">
 
-                <a href="{{ path('cadastro_escola_show',{'id': escola.id}) }}" class="btn btn-primary btn-sm link-search">
+                <a href="{{ path('cadastro_escola_show',{ 'id' : escola.id }) }}" class="btn btn-primary btn-sm link-search">
                     <span class="fa fa-reply"></span>
                     Mostrar Escola
                 </a>
 
             </div>
-
         </div>
     {% endblock %}
 
@@ -58,8 +57,6 @@
                         <div class="table table-responsive">
                             <table class="table table-bordered table-condensed">
                                 <tbody>
-
-                                </tr>
                                 <tr>
                                     <th>Nome</th>
                                     <td>{{ escola.nome }}</td>

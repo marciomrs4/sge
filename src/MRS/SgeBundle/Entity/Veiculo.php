@@ -157,7 +157,7 @@ class Veiculo
 
     public function __toString()
     {
-      return $this->getPlaca();
+      return $this->getModelo();
     }
 
 }

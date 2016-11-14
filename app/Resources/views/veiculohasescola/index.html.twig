@@ -1,3 +1,4 @@
+{#
     {% extends ':template:template.html.twig' %}
 
 {% block stylesheets %}
@@ -37,7 +38,24 @@
     {% endblock %}
 
     {% block panelbody %}
-    <div class="table-responsive">
+#}
+
+<div class="box box-primary collapsed-box">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <button type="button" class="btn btn-primary btn-xs" data-widget="collapse">
+                <i class="fa fa-plus"></i>
+                Mostrar Veiculos
+            </button>
+        </h3>
+
+        <div class="box-tools pull-right">
+
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body" style="display: none;">
         <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
             <thead>
             <tr>
@@ -49,29 +67,33 @@
             </thead>
             <tbody>
             {% for veiculoHasEscola in veiculoHasEscolas %}
-            <tr>
-                <td>
-                    <a href="{{ path('cadastro_veiculohasescola_edit', { 'id': veiculoHasEscola.id }) }}" class="btn btn-primary btn-sm link-search">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        edit
-                    </a>
-                </td>
-                <td>
-                    {{ veiculoHasEscola.veiculo.placa }}
-                </td>
-                <td>
-                    {{ veiculoHasEscola.veiculo.modelo }}
-                </td>
-                <td>
-                    {{ veiculoHasEscola.veiculo.titulo }}
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <a href="{{ path('cadastro_veiculohasescola_edit', { 'id': veiculoHasEscola.id }) }}" class="btn btn-primary btn-xs link-search">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            Editar
+                        </a>
+                    </td>
+                    <td>
+                        {{ veiculoHasEscola.veiculo.placa }}
+                    </td>
+                    <td>
+                        {{ veiculoHasEscola.veiculo.modelo }}
+                    </td>
+                    <td>
+                        {{ veiculoHasEscola.veiculo.titulo }}
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>
+
     </div>
+    <!-- /.box-body -->
+</div>
 
 
+{#
     {% endblock %}
 
 
@@ -84,3 +106,5 @@
 
 
 {% endblock %}
+
+#}

@@ -33,29 +33,33 @@
                     <th>Rg</th>
                     <th>Cpf</th>
                     <th>Status</th>
-                    <th>Id</th>
             </tr>
             </thead>
             <tbody>
             {% for pai in pais %}
             <tr>
-                        <td><a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}">{{ pai.nome }}</a></td>
-                        <td>{{ pai.telefone1 }}</td>
-                        <td>{{ pai.telefone2 }}</td>
-                        <td>{{ pai.rg }}</td>
-                        <td>{{ pai.cpf }}</td>
-                        <td>{{ pai.status }}</td>
-                        <td>{{ pai.id }}</td>
-                        <td>
-                                <a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
-                                    <span class="glyphicon glyphicon-show"></span>
-                                    show
-                                </a>
-                                <a href="{{ path('cadastro_pais_edit', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
-                                    <span class="glyphicon glyphicon-edit"></span>
-                                    edit
-                                </a>
-                        </td>
+                <td>
+                    <a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        Mostrar
+                    </a>
+                    <a href="{{ path('cadastro_pais_edit', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Editar
+                    </a>
+                </td>
+                <td><a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}">{{ pai.nome }}</a></td>
+                <td>{{ pai.telefone1 }}</td>
+                <td>{{ pai.telefone2 }}</td>
+                <td>{{ pai.rg }}</td>
+                <td>{{ pai.cpf }}</td>
+                <td>
+                    {% if pai.status == 1 %}
+                        Ativo
+                    {% else %}
+                        Inativo
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
             </tbody>

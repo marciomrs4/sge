@@ -2,7 +2,9 @@
 
 namespace MRS\SgeBundle\Controller;
 
+use Doctrine\ORM\EntityRepository;
 use MRS\SgeBundle\Entity\Escola;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,12 +47,34 @@ class VeiculoHasEscolaController extends Controller
     public function newAction(Escola $escola, Request $request)
     {
         $veiculoHasEscola = new VeiculoHasEscola();
+        $veiculoHasEscola->setEscola($escola);
         $form = $this->createForm('MRS\SgeBundle\Form\VeiculoHasEscolaType', $veiculoHasEscola);
+
+        $veiculoHasEscolaExist = $this->getDoctrine()
+            ->getRepository('MRSSgeBundle:VeiculoHasEscola')
+            ->findBy(array('escola' => $escola));
+
+        $ids = '';
+        foreach($veiculoHasEscolaExist as $linha){
+            $ids[] = $linha->getVeiculo()->getId();
+        }
+
+
+        $form->add('veiculo',EntityType::class,array('label'=>'veiculo',
+                        'attr'=>array('class'=>'input-sm'),
+                    'class' => 'MRS\SgeBundle\Entity\Veiculo',
+                    'query_builder' => function(EntityRepository $er)use($ids){
+                        return $er->createQueryBuilder('v')
+                            ->where('v.id NOT IN (:ids)')
+                            ->orderBy('v.titulo','ASC')
+                            ->setParameter('ids',$ids);
+                    }));
+
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $veiculoHasEscola->setEscola($escola);
             $em->persist($veiculoHasEscola);
             $em->flush();
 
@@ -92,6 +116,34 @@ class VeiculoHasEscolaController extends Controller
     {
         $deleteForm = $this->createDeleteForm($veiculoHasEscola);
         $editForm = $this->createForm('MRS\SgeBundle\Form\VeiculoHasEscolaType', $veiculoHasEscola);
+
+        $escolaId = $veiculoHasEscola->getEscola()->getId();
+
+        $id = $veiculoHasEscola->getVeiculo()->getId();
+
+        $veiculoHasEscolaExist = $this->getDoctrine()
+            ->getRepository('MRSSgeBundle:VeiculoHasEscola')
+            ->findBy(array('escola' => $veiculoHasEscola->getEscola()));
+
+        $ids = '';
+
+        foreach($veiculoHasEscolaExist as $linha){
+            $ids[] = $linha->getVeiculo()->getId();
+        }
+
+
+        $editForm->add('veiculo',EntityType::class,array('label'=>'veiculo',
+            'attr'=>array('class'=>'input-sm'),
+            'class' => 'MRS\SgeBundle\Entity\Veiculo',
+            'query_builder' => function(EntityRepository $er)use($ids, $id){
+                return $er->createQueryBuilder('v')
+                    ->where('v.id = :id OR v.id NOT IN (:ids)')
+                    ->orderBy('v.titulo','ASC')
+                    ->setParameter('ids',$ids)
+                    ->setParameter('id',$id);
+
+            }));
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -101,7 +153,7 @@ class VeiculoHasEscolaController extends Controller
 
             $this->addFlash('notice','Alterado com sucesso!');
 
-            return $this->redirectToRoute('cadastro_veiculohasescola_show', array('id' => $veiculoHasEscola->getId()));
+            return $this->redirectToRoute('cadastro_escola_show', array('id' => $escolaId));
         }
 
         return $this->render('veiculohasescola/edit.html.twig', array(
@@ -119,6 +171,8 @@ class VeiculoHasEscolaController extends Controller
      */
     public function deleteAction(Request $request, VeiculoHasEscola $veiculoHasEscola)
     {
+        $escolaId = $veiculoHasEscola->getEscola()->getId();
+
         $form = $this->createDeleteForm($veiculoHasEscola);
         $form->handleRequest($request);
 
@@ -128,7 +182,7 @@ class VeiculoHasEscolaController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('cadastro_veiculohasescola_index');
+        return $this->redirectToRoute('cadastro_escola_show',array('id' => $escolaId));
     }
 
     /**

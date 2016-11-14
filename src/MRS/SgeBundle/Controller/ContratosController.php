@@ -67,6 +67,7 @@ class ContratosController extends Controller
 
         return $this->render('contratos/new.html.twig', array(
             'contrato' => $contrato,
+            'aluno' => $aluno,
             'form' => $form->createView(),
         ));
     }

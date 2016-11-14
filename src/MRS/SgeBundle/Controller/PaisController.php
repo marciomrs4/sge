@@ -69,12 +69,14 @@ class PaisController extends Controller
      */
     public function showAction(Pais $pai)
     {
-        $deleteForm = $this->createDeleteForm($pai);
+        $endereco = $this->getDoctrine()
+            ->getRepository('MRSSgeBundle:Logradouro')
+            ->findOneBy(array('pais' => $pai));
 
         return $this->render('pais/show.html.twig', array(
             'pai' => $pai,
-            'delete_form' => $deleteForm->createView(),
-        ));
+            'endereco' => $endereco
+         ));
     }
 
     /**
