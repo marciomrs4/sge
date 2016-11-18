@@ -1,70 +1,85 @@
-    {% extends ':template:template.html.twig' %}
+{% extends ':template:template.html.twig' %}
 
+    {% block stylesheets %}
+
+        {{ parent() }}
+
+        <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+
+    {% endblock %}
 
     {% block contentheader %}
 
-
-    <section class="content-header">
-        <h1>
-            Pais
-            <small>Listar</small>
-        </h1>
-    </section>
-
+        <section class="content-header">
+            <h1>
+                Pais
+                <small>Listar</small>
+            </h1>
+        </section>
 
     {% endblock %}
 
 
     {% block panelheading %}
-    <a href="{{ path('cadastro_pais_new') }}" class="btn btn-primary btn-sm link-search">
+        <a href="{{ path('cadastro_pais_new') }}" class="btn btn-primary btn-sm link-search">
             <span class="glyphicon glyphicon-plus"></span>
             Novo
         </a>    {% endblock %}
 
     {% block panelbody %}
-    <div class="table-responsive">
-        <table class="table table-bordered table-condensed table-hover table-striped">
-            <thead>
-            <tr>
-                <th>Ações</th>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Ações</th>
                     <th>Nome</th>
                     <th>Telefone1</th>
                     <th>Telefone2</th>
                     <th>Rg</th>
                     <th>Cpf</th>
                     <th>Status</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for pai in pais %}
-            <tr>
-                <td>
-                    <a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                        Mostrar
-                    </a>
-                    <a href="{{ path('cadastro_pais_edit', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
-                        <span class="glyphicon glyphicon-edit"></span>
-                        Editar
-                    </a>
-                </td>
-                <td><a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}">{{ pai.nome }}</a></td>
-                <td>{{ pai.telefone1 }}</td>
-                <td>{{ pai.telefone2 }}</td>
-                <td>{{ pai.rg }}</td>
-                <td>{{ pai.cpf }}</td>
-                <td>
-                    {% if pai.status == 1 %}
-                        Ativo
-                    {% else %}
-                        Inativo
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
+                </tr>
+                </thead>
+                <tbody>
+                {% for pai in pais %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Mostrar
+                            </a>
+                            <a href="{{ path('cadastro_pais_edit', { 'id': pai.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Editar
+                            </a>
+                        </td>
+                        <td><a href="{{ path('cadastro_pais_show', { 'id': pai.id }) }}">{{ pai.nome }}</a></td>
+                        <td>{{ pai.telefone1 }}</td>
+                        <td>{{ pai.telefone2 }}</td>
+                        <td>{{ pai.rg }}</td>
+                        <td>{{ pai.cpf }}</td>
+                        <td>
+                            {% if pai.status == 1 %}
+                                Ativo
+                            {% else %}
+                                Inativo
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ parent() }}
+
+        <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
+        <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>
+        <script src="{{ asset("bundles/mrssge/js/mrs-dataTable.js") }}"></script>
 
 
     {% endblock %}

@@ -57,7 +57,12 @@
             </a>
         </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
-            {% if endereco %}{% else %}
+            {% if endereco %}
+                <a href="{{ path('cadastro_logradouro_edit', { 'id': endereco.id }) }}" class="btn btn-primary btn-sm link-search">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Endereço
+                </a>
+            {% else %}
                 <a href="{{ path('cadastro_logradouro_new', { 'pai': pai.id }) }}" class="btn btn-primary btn-sm link-search">
                     <span class="glyphicon glyphicon-plus"></span>
                     Endereço

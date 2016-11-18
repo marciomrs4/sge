@@ -99,6 +99,8 @@ class LogradouroController extends Controller
         $editForm = $this->createForm('MRS\SgeBundle\Form\LogradouroType', $logradouro);
         $editForm->handleRequest($request);
 
+        $paiId = $logradouro->getPais()->getId();
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($logradouro);
@@ -106,7 +108,7 @@ class LogradouroController extends Controller
 
             $this->addFlash('notice','Alterado com sucesso!');
 
-            return $this->redirectToRoute('cadastro_logradouro_show', array('id' => $logradouro->getId()));
+            return $this->redirectToRoute('cadastro_pais_show', array('id' => $paiId));
         }
 
         return $this->render('logradouro/edit.html.twig', array(
@@ -127,13 +129,15 @@ class LogradouroController extends Controller
         $form = $this->createDeleteForm($logradouro);
         $form->handleRequest($request);
 
+        $paiId = $logradouro->getPais()->getId();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($logradouro);
             $em->flush();
         }
 
-        return $this->redirectToRoute('cadastro_logradouro_index');
+        return $this->redirectToRoute('cadastro_pais_show',array('id' => $paiId));
     }
 
     /**

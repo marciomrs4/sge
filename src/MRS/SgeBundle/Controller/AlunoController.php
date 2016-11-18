@@ -121,13 +121,15 @@ class AlunoController extends Controller
         $form = $this->createDeleteForm($aluno);
         $form->handleRequest($request);
 
+        $paiId = $aluno->getPais()->getId();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($aluno);
             $em->flush();
         }
 
-        return $this->redirectToRoute('cadastro_aluno_index');
+        return $this->redirectToRoute('cadastro_pais_show',array('id' => $paiId));
     }
 
     /**
