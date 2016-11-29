@@ -6,7 +6,7 @@
 
     <section class="content-header">
         <h1>
-            Informação Complementar
+            FinancasParcelamento
             <small>Mostrar</small>
         </h1>
     </section>
@@ -36,21 +36,27 @@
 
     <div class="col-md-2 col-sm-3 col-xs-3">
 
-        <a href="{{ path('cadastro_aluno_show', { 'id' : informacaoComplementar.aluno.id }) }}" class="btn btn-primary btn-sm link-search">
-            <span class="fa fa-reply"></span>
-            Mostrar Aluno
-        </a>
+        {#<a href="{{ path('cadastro_financasparcelamento_index') }}" class="btn btn-primary btn-sm link-search">#}
+            {#<span class="fa fa-reply"></span>#}
+            {#Voltar#}
+        {#</a>#}
 
     </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
 
-            <a href="{{ path('cadastro_informacaocomplementar_edit', { 'id': informacaoComplementar.id }) }}" class="btn btn-primary btn-sm link-search">
+            <a href="{{ path('cadastro_financasparcelamento_edit', { 'id': financasParcelamento.id }) }}" class="btn btn-primary btn-sm link-search">
                 <span class="glyphicon glyphicon-edit"></span>
                 Editar
             </a>
 
         </div>
         <div class="col-md-2 col-sm-3 col-xs-3">
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-danger btn-sm remover-form">
+                <span class="glyphicon glyphicon-trash"></span>
+                Deletar
+            </button>
+            {{ form_end(delete_form) }}
 
         </div>
 </div>{% endblock %}
@@ -63,16 +69,16 @@
         <table class="table table-bordered table-condensed">
             <tbody>
                 <tr>
-                    <th>Professor</th>
-                        <td>{{ informacaoComplementar.professor }}</td>
+                    <th>Valorparcial</th>
+                        <td>{{ financasParcelamento.valorParcial }}</td>
                 </tr>
                 <tr>
-                    <th>Problema de saúde</th>
-                        <td>{{ informacaoComplementar.problemasSaude }}</td>
+                    <th>Datapagamento</th>
+                        <td>{% if financasParcelamento.dataPagamento %}{{ financasParcelamento.dataPagamento|date('Y-m-d') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Observação</th>
-                        <td>{{ informacaoComplementar.observacao }}</td>
+                    <th>Id</th>
+                        <td>{{ financasParcelamento.id }}</td>
                 </tr>
             </tbody>
         </table>

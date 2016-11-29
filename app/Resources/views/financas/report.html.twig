@@ -1,0 +1,134 @@
+{% extends ':template:template.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+
+{% endblock %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                Relatório
+                <small>Financeiro</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+    {% block firstrow  %}
+
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                </div>
+                <div class="box-body">
+
+                    {{ form_start(formReport,{'attr':{'novalidate':'novalidate'}}) }}
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            {{ form_row(formReport.dataInicial) }}
+                        </div>
+
+                        <div class="col-md-4">
+                            {{ form_row(formReport.dataFinal) }}
+                        </div>
+
+                        <div class="col-md-4">
+                            {{ form_row(formReport.status) }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <div class="input-load">
+                                <button type="submit" class="btn btn-primary btn-sm input-search">
+                                    Pesquisar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ form_end(formReport) }}
+
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block panelheading %}
+        <div class="row">
+            <div class="col-md-4">
+                <b>Somatória do período: R$ {{ somatoria.soma|number_format(2,',','.') }}</b>
+            </div>
+            <div class="col-md-4">
+                <b>Média do período: R$ {{ somatoria.media|number_format(2,',','.') }}</b>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block panelbody %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Ações</th>
+                    <th>Aluno</th>
+                    <th>Pais</th>
+                    <th>Mensalidade</th>
+                    <th>Valor Total Pago</th>
+                    <th>Data de Vencimento</th>
+                    <th>Data de Pagamento</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for financa in financas %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('cadastro_financas_show', { 'id': financa.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Mostrar
+                            </a>
+                        </td>
+                        <td>{{ financa.aluno.nome }}</td>
+                        <td>{{ financa.aluno.pais.nome }}</td>
+                        <td>{{ financa.aluno.valorMensalidade|number_format(2,',','.') }}</td>
+                        <td>{{ financa.valorTotalPago|number_format(2,',','.') }}</td>
+                        <td>{% if financa.dataVencimento %}{{ financa.dataVencimento|date('d-m-Y') }}{% endif %}</td>
+                        <td>{% if financa.dataPagamento %}{{ financa.dataPagamento|date('d-m-Y') }}{% endif %}</td>
+                        <td>
+                            {% if financa.status %}
+                                Pendente
+                            {% else %}
+                                Pago
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/mrs-dataTable.js") }}"></script>
+
+
+{% endblock %}

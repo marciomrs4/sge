@@ -1,3 +1,11 @@
+mrs_sge_financas_parcelamento:
+    resource: "@MRSSgeBundle/Controller/FinancasParcelamentoController.php"
+    type:     annotation
+
+mrs_sge_financas:
+    resource: "@MRSSgeBundle/Controller/FinancasController.php"
+    type:     annotation
+
 mrs_sge_logradouro:
     resource: "@MRSSgeBundle/Controller/LogradouroController.php"
     type:     annotation

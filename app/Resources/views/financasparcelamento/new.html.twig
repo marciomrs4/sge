@@ -5,7 +5,7 @@
 
     <section class="content-header">
         <h1>
-            Informação Complementar
+            FinancasParcelamento
             <small>Novo</small>
         </h1>
     </section>
@@ -19,9 +19,9 @@
 
     <div class="col-md-2 col-sm-3 col-xs-3">
 
-        <a href="{{ path('cadastro_aluno_show',{'id': aluno.id}) }}" class="btn btn-primary btn-sm link-search">
-            <span class="fa fa-reply"></span>
-            Mostrar Aluno
+        <a href="{{ path('cadastro_financas_show',{ 'id': financasParcelamento.financas.id }) }}" class="btn btn-primary btn-sm link-search">
+            <span class="glyphicon glyphicon-eye-open"></span>
+            Mostrar Pagamento
         </a>
 
     </div>
@@ -30,7 +30,7 @@
 
     {% block panelbody %}
 
-    {{ form_start(form) }}
+    {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
     {{ form_widget(form) }}
 
     {% endblock %}

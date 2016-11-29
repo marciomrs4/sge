@@ -34,26 +34,55 @@
 
         <div class="row">
 
-        <div class="col-md-2 col-sm-3 col-xs-3">
+            <div class="col-md-2 col-sm-3 col-xs-3">
 
-            <a href="{{ path('cadastro_aluno_show',{ 'id' : contrato.aluno.id}) }}" class="btn btn-primary btn-sm link-search">
-                <span class="fa fa-reply"></span>
-                Mostrar Aluno
-            </a>
+                <a href="{{ path('cadastro_aluno_show',{ 'id' : contrato.aluno.id}) }}" class="btn btn-primary btn-sm link-search">
+                    <span class="fa fa-reply"></span>
+                    Mostrar Aluno
+                </a>
 
+            </div>
+
+            <div class="col-md-2 col-sm-3 col-xs-3">
+
+                <a href="{{ path('cadastro_contratos_index',{ 'aluno' : contrato.aluno.id}) }}" class="btn btn-primary btn-sm link-search">
+                    <span class="fa fa-reply"></span>
+                    Contratos do Aluno
+                </a>
+
+            </div>
+
+            {% if contrato.financasCriada %}
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    Lista Financeira Criada, não é possivel editar.
+                </div>
+            {% else %}
+
+                <div class="col-md-2 col-sm-3 col-xs-3">
+
+                    <a href="{{ path('cadastro_contratos_edit', { 'id': contrato.id }) }}" class="btn btn-primary btn-sm link-search">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Editar
+                    </a>
+
+                </div>
+
+                <div class="col-md-2 col-sm-3 col-xs-3">
+
+
+
+                    {{ form_start(form_create) }}
+                    <button type="submit" class="btn btn-primary btn-sm remover-form">
+                        <span class="glyphicon glyphicon-list"></span>
+                        Gerar Entrada Financeira
+                    </button>
+                    {{ form_end(form_create) }}
+
+                </div>
+
+            {% endif %}
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-
-            <a href="{{ path('cadastro_contratos_edit', { 'id': contrato.id }) }}" class="btn btn-primary btn-sm link-search">
-                <span class="glyphicon glyphicon-edit"></span>
-                Editar
-            </a>
-
-        </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-
-        </div>
-        </div>{% endblock %}
+    {% endblock %}
 
 
 
@@ -63,9 +92,64 @@
             <table class="table table-bordered table-condensed">
                 <tbody>
                 <tr>
-                    <th>Termocompromisso</th>
+                    <th>Aluno</th>
+                    <td>{{ contrato.aluno.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Pai</th>
+                    <td>{{ contrato.aluno.pais.nome }}</td>
+                </tr>
+                <tr>
+                    <th>Termo de compromisso</th>
                     <td>{{ contrato.termoCompromisso }}</td>
                 </tr>
+                <tr>
+                    <th>Data do Incio do Contrato</th>
+                    <td>{{ contrato.dataContratoInicial | date('d-m-Y')}}</td>
+                </tr>
+                <tr>
+                    <th>Data Final do Contrato</th>
+                    <td>{{ contrato.dataContratoFinal | date('d-m-Y')}}</td>
+                </tr>
+                <tr>
+                    <th>Número de Parcelas</th>
+                    <td>{{ contrato.numeroParcelas }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Aluno</th>
+                    <th>Pai</th>
+                    <th>Mensalidade</th>
+                    <th>Valor Total Pago</th>
+                    <th>Data de Vencimento</th>
+                    <th>Data de Pagamento</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for financa in financas %}
+                    <tr>
+                        <td>{{ financa.aluno.nome }}</td>
+                        <td>{{ financa.aluno.pais.nome }}</td>
+                        <td>{{ financa.aluno.valorMensalidade|number_format(2,',','.') }}</td>
+                        <td>{{ financa.valorTotalPago|number_format(2,',','.') }}</td>
+                        <td>{% if financa.dataVencimento %}{{ financa.dataVencimento|date('d-m-Y') }}{% endif %}</td>
+                        <td>{% if financa.dataPagamento %}{{ financa.dataPagamento|date('d-m-Y') }}{% endif %}</td>
+                        <td>
+                            {% if financa.status %}
+                                Pendente
+                            {% else %}
+                                Pago
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

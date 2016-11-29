@@ -34,7 +34,7 @@
 
         <div class="row">
 
-    <div class="col-md-2 col-sm-3 col-xs-3">
+    <div class="col-md-1 col-sm-2 col-xs-2">
 
         <a href="{{ path('cadastro_pais_show',{ 'id': aluno.pais.id }) }}" class="btn btn-primary btn-sm link-search">
             <span class="fa fa-reply"></span>
@@ -42,7 +42,16 @@
         </a>
 
     </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
+        <div class="col-md-1 col-sm-3 col-xs-3">
+
+            <a href="{{ path('cadastro_aluno_all') }}" class="btn btn-primary btn-sm link-search">
+                <span class="fa fa-reply"></span>
+                Listar Alunos
+            </a>
+
+        </div>
+
+        <div class="col-md-1 col-sm-2 col-xs-2">
 
             <a href="{{ path('cadastro_aluno_edit', { 'id': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
                 <span class="glyphicon glyphicon-edit"></span>
@@ -50,14 +59,15 @@
             </a>
 
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-3">
-            <a href="{{ path('cadastro_informacaocomplementar_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
-                <span class="fa fa-reply"></span>
-                Informação Complementar
+        <div class="col-md-1 col-sm-2 col-xs-2">
+            <a href="{{ path('cadastro_informacaocomplementar_new', { 'aluno': aluno.id }) }}"
+               class="btn btn-primary btn-sm link-search" data-toggle="tooltip" title="Mais informações sobre o Aluno">
+                <span class="fa fa-plus"></span>
+                Informação
             </a>
         </div>
 
-        <div class="col-md-2 col-sm-3 col-xs-3">
+        <div class="col-md-1 col-sm-2 col-xs-2">
             <a href="{{ path('cadastro_contratos_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
                 <span class="fa fa-plus"></span>
                 Contrato
@@ -78,11 +88,11 @@
                         <td>{{ aluno.nome }}</td>
                 </tr>
                 <tr>
-                    <th>Datanascimento</th>
+                    <th>Data de nascimento</th>
                         <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('d-m-Y') }}{% endif %}</td>
                 </tr>
                 <tr>
-                    <th>Valormensalidade</th>
+                    <th>Valor mensalidade</th>
                         <td>{{ aluno.valorMensalidade|number_format(2,',','.') }}</td>
                 </tr>
                 <tr>

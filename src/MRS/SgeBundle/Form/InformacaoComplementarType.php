@@ -15,11 +15,11 @@ class InformacaoComplementarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('professor',null,array('label'=>'professor',
+            ->add('professor',null,array('label'=>'Professor',
                                            'attr'=>array('class'=>'input-sm')))
-            ->add('problemasSaude',null,array('label'=>'problemasSaude',
+            ->add('problemasSaude',null,array('label'=>'Problema de Saúde',
                                            'attr'=>array('class'=>'input-sm')))
-            ->add('observacao',null,array('label'=>'observacao',
+            ->add('observacao',null,array('label'=>'Observação',
                                            'attr'=>array('class'=>'input-sm')))
         ;
     }

@@ -20,6 +20,38 @@ class Contratos
     private $termoCompromisso;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="financas_criada", type="text", length=1, nullable=false)
+     */
+    private $financasCriada;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="finalizado", type="text", length=1, nullable=false)
+     */
+    private $finalizado;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="data_contrato_inicial", type="date", nullable=false)
+     */
+    private $dataContratoInicial;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="data_contrato_final", type="date", nullable=false)
+     */
+    private $dataContratoFinal;
+
+    /**
+     * @var integer
+     * @ORM\Column(name="numero_parcelas", type="integer", nullable=false)
+     */
+    private $numeroParcelas;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -94,5 +126,120 @@ class Contratos
     public function getAluno()
     {
         return $this->aluno;
+    }
+
+    /**
+     * Set dataContratoFinal
+     *
+     * @param \DateTime $dataContratoFinal
+     * @return Contratos
+     */
+    public function setDataContratoFinal($dataContratoFinal)
+    {
+        $this->dataContratoFinal = $dataContratoFinal;
+
+        return $this;
+    }
+
+    /**
+     * Get dataContratoFinal
+     *
+     * @return \DateTime 
+     */
+    public function getDataContratoFinal()
+    {
+        return $this->dataContratoFinal;
+    }
+
+    /**
+     * Set numeroParcelas
+     *
+     * @param integer $numeroParcelas
+     * @return Contratos
+     */
+    public function setNumeroParcelas($numeroParcelas)
+    {
+        $this->numeroParcelas = $numeroParcelas;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroParcelas
+     *
+     * @return integer 
+     */
+    public function getNumeroParcelas()
+    {
+        return $this->numeroParcelas;
+    }
+
+    /**
+     * Set dataContratoInicial
+     *
+     * @param \DateTime $dataContratoInicial
+     * @return Contratos
+     */
+    public function setDataContratoInicial($dataContratoInicial)
+    {
+        $this->dataContratoInicial = $dataContratoInicial;
+
+        return $this;
+    }
+
+    /**
+     * Get dataContratoInicial
+     *
+     * @return \DateTime 
+     */
+    public function getDataContratoInicial()
+    {
+        return $this->dataContratoInicial;
+    }
+
+    /**
+     * Set financasCriada
+     *
+     * @param string $financasCriada
+     * @return Contratos
+     */
+    public function setFinancasCriada($financasCriada)
+    {
+        $this->financasCriada = $financasCriada;
+
+        return $this;
+    }
+
+    /**
+     * Get financasCriada
+     *
+     * @return string 
+     */
+    public function getFinancasCriada()
+    {
+        return $this->financasCriada;
+    }
+
+    /**
+     * Set finalizado
+     *
+     * @param string $finalizado
+     * @return Contratos
+     */
+    public function setFinalizado($finalizada)
+    {
+        $this->finalizada = $finalizada;
+
+        return $this;
+    }
+
+    /**
+     * Get finalizado
+     *
+     * @return string 
+     */
+    public function getFinalizado()
+    {
+        return $this->finalizada;
     }
 }

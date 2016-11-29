@@ -17,8 +17,27 @@ use MRS\SgeBundle\Form\AlunoType;
  */
 class AlunoController extends Controller
 {
+
     /**
      * Lists all Aluno entities.
+     *
+     * @Route("/todos", name="cadastro_aluno_all")
+     * @Method("GET")
+     */
+    public function listarAlunosAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $alunos = $em->getRepository('MRSSgeBundle:Aluno')
+            ->findAll();
+
+        return $this->render('aluno/listaralunos.html.twig', array(
+            'alunos' => $alunos,
+        ));
+    }
+
+    /**
+     * Lists all Aluno entities by Pai.
      *
      * @Route("/{pai}", name="cadastro_aluno_index")
      * @Method("GET")

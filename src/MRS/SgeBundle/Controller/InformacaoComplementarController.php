@@ -71,6 +71,7 @@ class InformacaoComplementarController extends Controller
 
         return $this->render('informacaocomplementar/new.html.twig', array(
             'informacaoComplementar' => $informacaoComplementar,
+            'aluno'=>$aluno,
             'form' => $form->createView(),
         ));
     }
@@ -83,7 +84,6 @@ class InformacaoComplementarController extends Controller
      */
     public function showAction(InformacaoComplementar $informacaoComplementar)
     {
-
         return $this->render('informacaocomplementar/show.html.twig', array(
             'informacaoComplementar' => $informacaoComplementar,
         ));

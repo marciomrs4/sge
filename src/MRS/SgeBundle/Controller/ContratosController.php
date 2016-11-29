@@ -20,17 +20,19 @@ class ContratosController extends Controller
     /**
      * Lists all Contratos entities.
      *
-     * @Route("/", name="cadastro_contratos_index")
+     * @Route("/{aluno}", name="cadastro_contratos_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Aluno $aluno)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $contratos = $em->getRepository('MRSSgeBundle:Contratos')->findAll();
+        $contratos = $em->getRepository('MRSSgeBundle:Contratos')
+            ->findBy(array('aluno' => $aluno));
 
         return $this->render('contratos/index.html.twig', array(
             'contratos' => $contratos,
+            'aluno' => $aluno
         ));
     }
 
@@ -75,15 +77,49 @@ class ContratosController extends Controller
     /**
      * Finds and displays a Contratos entity.
      *
-     * @Route("/{id}", name="cadastro_contratos_show")
+     * @Route("/{id}/show", name="cadastro_contratos_show")
      * @Method("GET")
      */
     public function showAction(Contratos $contrato)
     {
-        $deleteForm = $this->createDeleteForm($contrato);
+        $form =  $this->createFormBuilder()
+            ->setAction($this->generateUrl('cadastro_financas_create_list',
+                array('contrato' => $contrato->getId())))
+            ->setMethod('POST')
+            ->getForm();
+
+        $financas = $this->getDoctrine()->getRepository('MRSSgeBundle:Financas')
+            ->findBy(array('contrato' => $contrato));
 
         return $this->render('contratos/show.html.twig', array(
             'contrato' => $contrato,
+            'financas' => $financas,
+            'form_create' => $form->createView()
+        ));
+    }
+
+    /**
+     * Finish one Contratos entity.
+     *
+     * @Route("/{id}/close", name="cadastro_contratos_close")
+     * @Method("GET|POST")
+     */
+    public function updateFinalizarAction(Contratos $contrato)
+    {
+        $form =  $this->createFormBuilder()
+            ->setAction($this->generateUrl('cadastro_contratos_close',
+                array('contrato' => $contrato->getId())))
+            ->setMethod('POST')
+            ->getForm();
+        
+
+        $financas = $this->getDoctrine()->getRepository('MRSSgeBundle:Financas')
+            ->findBy(array('contrato' => $contrato));
+
+        return $this->render('contratos/show.html.twig', array(
+            'contrato' => $contrato,
+            'financas' => $financas,
+            'form_create' => $form->createView()
         ));
     }
 

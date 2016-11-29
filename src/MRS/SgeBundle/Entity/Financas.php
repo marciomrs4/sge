@@ -3,35 +3,45 @@
 namespace MRS\SgeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Financas
  *
  * @ORM\Table(name="financas", indexes={@ORM\Index(name="alu_codigo_on_alu_codigo_idx", columns={"aluno_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MRS\SgeBundle\Repository\FinancasRepository")
  */
 class Financas
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="valor_mensalidade", type="decimal", precision=10, scale=2, nullable=false)
+     * @ORM\Column(name="valor_total_pago", type="decimal", precision=10, scale=2, nullable=true)
+     * @Assert\NotBlank(message="Valor é obrigatório")
      */
-    private $valorMensalidade;
+    private $valorTotalPago;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="vencimento", type="date", nullable=false)
+     * @ORM\Column(name="data_vencimento", type="date", nullable=false)
      */
-    private $vencimento;
+    private $dataVencimento;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pagamento", type="string", length=1, nullable=false)
+     * @ORM\Column(name="data_pagamento", type="date", nullable=true)
      */
-    private $pagamento;
+    private $dataPagamento;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=1, nullable=false)
+     */
+    private $status;
 
     /**
      * @var integer
@@ -53,74 +63,109 @@ class Financas
     private $aluno;
 
 
+    /**
+     * @var \MRS\SgeBundle\Entity\Contratos
+     *
+     * @ORM\ManyToOne(targetEntity="MRS\SgeBundle\Entity\Contratos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contrato_id", referencedColumnName="id")
+     * })
+     */
+    private $contrato;
+
+
+
 
     /**
-     * Set valorMensalidade
+     * Set valorTotalPago
      *
-     * @param string $valorMensalidade
+     * @param string $valorTotalPago
      * @return Financas
      */
-    public function setValorMensalidade($valorMensalidade)
+    public function setValorTotalPago($valorTotalPago)
     {
-        $this->valorMensalidade = $valorMensalidade;
+        $this->valorTotalPago = $valorTotalPago;
 
         return $this;
     }
 
     /**
-     * Get valorMensalidade
+     * Get valorTotalPago
      *
      * @return string 
      */
-    public function getValorMensalidade()
+    public function getValorTotalPago()
     {
-        return $this->valorMensalidade;
+        return $this->valorTotalPago;
     }
 
     /**
-     * Set vencimento
+     * Set dataVencimento
      *
-     * @param \DateTime $vencimento
+     * @param \DateTime $dataVencimento
      * @return Financas
      */
-    public function setVencimento($vencimento)
+    public function setDataVencimento($dataVencimento)
     {
-        $this->vencimento = $vencimento;
+        $this->dataVencimento = $dataVencimento;
 
         return $this;
     }
 
     /**
-     * Get vencimento
+     * Get dataVencimento
      *
      * @return \DateTime 
      */
-    public function getVencimento()
+    public function getDataVencimento()
     {
-        return $this->vencimento;
+        return $this->dataVencimento;
     }
 
     /**
-     * Set pagamento
+     * Set dataPagamento
      *
-     * @param string $pagamento
+     * @param \DateTime $dataPagamento
      * @return Financas
      */
-    public function setPagamento($pagamento)
+    public function setDataPagamento($dataPagamento)
     {
-        $this->pagamento = $pagamento;
+        $this->dataPagamento = $dataPagamento;
 
         return $this;
     }
 
     /**
-     * Get pagamento
+     * Get dataPagamento
+     *
+     * @return \DateTime 
+     */
+    public function getDataPagamento()
+    {
+        return $this->dataPagamento;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Financas
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
      *
      * @return string 
      */
-    public function getPagamento()
+    public function getStatus()
     {
-        return $this->pagamento;
+        return $this->status;
     }
 
     /**
@@ -154,5 +199,28 @@ class Financas
     public function getAluno()
     {
         return $this->aluno;
+    }
+
+    /**
+     * Set contrato
+     *
+     * @param \MRS\SgeBundle\Entity\Contratos $contrato
+     * @return Financas
+     */
+    public function setContrato(\MRS\SgeBundle\Entity\Contratos $contrato = null)
+    {
+        $this->contrato = $contrato;
+
+        return $this;
+    }
+
+    /**
+     * Get contrato
+     *
+     * @return \MRS\SgeBundle\Entity\Contratos 
+     */
+    public function getContrato()
+    {
+        return $this->contrato;
     }
 }

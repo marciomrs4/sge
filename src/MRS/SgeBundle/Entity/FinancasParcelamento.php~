@@ -1,0 +1,50 @@
+<?php
+
+namespace MRS\SgeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Financas
+ *
+ * @ORM\Table(name="financas_parcelamento", indexes={@ORM\Index(name="fk_financas", columns={"financas_id"})})
+ * @ORM\Entity
+ */
+class FinancasParcelamento
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="valor_parcial", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $valorParcial;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data_pagamento", type="date", nullable=true)
+     */
+    private $dataPagamento;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \MRS\SgeBundle\Entity\Financas
+     *
+     * @ORM\ManyToOne(targetEntity="MRS\SgeBundle\Entity\Financas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="financas_id", referencedColumnName="id")
+     * })
+     */
+    private $financas;
+
+}

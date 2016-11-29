@@ -1,0 +1,86 @@
+{% extends ':template:template.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+        <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+
+{% endblock %}
+
+
+    {% block contentheader %}
+
+
+    <section class="content-header">
+        <h1>
+            Aluno
+            <small>Listar</small>
+        </h1>
+    </section>
+
+
+    {% endblock %}
+
+    {% block panelbody %}
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Ações</th>
+                    <th>Nome</th>
+                    <th>Pai</th>
+                    <th>Datanascimento</th>
+                    <th>Valormensalidade</th>
+                    <th>Vencimento</th>
+                    <th>Serie</th>
+                    <th>Sala</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('cadastro_aluno_show', { 'id': aluno.id }) }}" class="btn btn-primary btn-xs link-search">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Mostrar
+                            </a>
+                            <a href="{{ path('cadastro_aluno_edit', { 'id': aluno.id }) }}" class="btn btn-primary btn-xs link-search">
+                                <span class="glyphicon glyphicon-edit"></span>
+                                Editar
+                            </a>
+                        </td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.pais.nome }}</td>
+                        <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('d-m-Y') }}{% endif %}</td>
+                        <td>{{ aluno.valorMensalidade|number_format(2,',','.') }}</td>
+                        <td>{% if aluno.vencimento %}{{ aluno.vencimento|date('d-m-Y') }}{% endif %}</td>
+                        <td>{{ aluno.serie }}</td>
+                        <td>{{ aluno.sala }}</td>
+                        <td>
+                            {% if aluno.status == 1 %}
+                                Ativo
+                            {% else %}
+                                Inativo
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+{{ parent() }}
+
+    <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/mrs-dataTable.js") }}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends ':template:template.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+
+{% endblock %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                Financas
+                <small>Listar</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+        {#<a href="{{ path('cadastro_financas_new') }}" class="btn btn-primary btn-sm link-search">#}
+            {#<span class="glyphicon glyphicon-plus"></span>#}
+            {#Novo#}
+        {#</a>#}
+
+    {% endblock %}
+
+    {% block panelbody %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Ações</th>
+                    <th>Aluno</th>
+                    <th>Pais</th>
+                    <th>Mensalidade</th>
+                    <th>Valor Total Pago</th>
+                    <th>Data de Vencimento</th>
+                    <th>Data de Pagamento</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for financa in financas %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('cadastro_financas_show', { 'id': financa.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                Mostrar
+                            </a>
+                            {% if financa.status  %}
+                            <a href="{{ path('cadastro_financas_checkout_pay', { 'financa': financa.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="fa fa-money"></span>
+                                Pagar
+                            </a>
+                            {% endif %}
+                        </td>
+                        <td>{{ financa.aluno.nome }}</td>
+                        <td>{{ financa.aluno.pais.nome }}</td>
+                        <td>{{ financa.aluno.valorMensalidade|number_format(2,',','.') }}</td>
+                        <td>{{ financa.valorTotalPago|number_format(2,',','.') }}</td>
+                        <td>{% if financa.dataVencimento %}{{ financa.dataVencimento|date('d-m-Y') }}{% endif %}</td>
+                        <td>{% if financa.dataPagamento %}{{ financa.dataPagamento|date('d-m-Y') }}{% endif %}</td>
+                        <td>
+                            {% if financa.status %}
+                                Pendente
+                            {% else %}
+                                Pago
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/mrs-dataTable.js") }}"></script>
+
+
+{% endblock %}

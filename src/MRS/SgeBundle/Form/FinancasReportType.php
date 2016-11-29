@@ -3,12 +3,15 @@
 namespace MRS\SgeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Choice;
 
-class ContratosType extends AbstractType
+class FinancasReportType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,15 +20,16 @@ class ContratosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('termoCompromisso',null,array('label'=>'termoCompromisso',
-                'attr'=>array('class'=>'input-sm')))
-            ->add('dataContratoInicial',DateType::class,array('label'=>'Data Inicial do Contrato',
+            ->add('dataInicial',DateType::class,array('label'=>'Data de Vencimento Inicial',
                 'attr'=>array('class'=>'input-sm'),
+                'mapped'=>false,
                 'widget'=>'single_text'))
-            ->add('dataContratoFinal',DateType::class,array('label'=>'Data Final do Contrato',
+            ->add('dataFinal',DateType::class,array('label'=>'Data de Vencimento Final',
                 'attr'=>array('class'=>'input-sm'),
+                'mapped'=>false,
                 'widget'=>'single_text'))
-            ->add('numeroParcelas',IntegerType::class,array('label'=>'Número de Parcelas',
+            ->add('status',ChoiceType::class,array('label'=>'Status',
+                'choices'=>array('%'=>'Todos','0'=>'Pago','1'=>'Pendente'),
                 'attr'=>array('class'=>'input-sm')))
         ;
     }
@@ -38,7 +42,12 @@ class ContratosType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'MRS\SgeBundle\Entity\Contratos'
+            'data_class' => 'MRS\SgeBundle\Entity\Financas'
         ));
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'financa_report';
     }
 }
