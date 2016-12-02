@@ -1,0 +1,88 @@
+{% extends ':template:template.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset("bundles/mrssge/css/dataTables.bootstrap.css") }}">
+
+{% endblock %}
+
+
+    {% block contentheader %}
+
+
+        <section class="content-header">
+            <h1>
+                Frequencia
+                <small>Listar</small>
+            </h1>
+        </section>
+
+
+    {% endblock %}
+
+
+    {% block panelheading %}
+
+
+        {{ dump(alunos) }}
+
+    {#
+
+        {% for turno in turnos %}
+            <a href="{{ path('cadastro_frequencia_index',{ 'turno': turno.id }) }}" class="btn btn-primary btn-sm link-search">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    {{ turno.descricao }}
+            </a>
+        {% endfor %}
+    {% endblock %}
+
+    {% block panelbody %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped table-datatable">
+                <thead>
+                <tr>
+                    <th>Ações</th>
+                    <th>Escola</th>
+                    <th>Turno</th>
+                    <th>Aluno</th>
+                    <th>DATA</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for aluno in alunos %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('cadastro_frequencia_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-list"></span>
+                                Justificar
+                            </a>
+                            <a href="{{ path('cadastro_frequencia_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
+                                <span class="glyphicon glyphicon-floppy-disk"></span>
+                                Marcar
+                            </a>
+                        </td>
+                        <td>{{ aluno.escola.nome }}</td>
+                        <td>{{ aluno.turno.descricao }}</td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.dataNascimento|date('D') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+#}
+    {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset("bundles/mrssge/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/dataTables.bootstrap.js") }}"></script>
+    <script src="{{ asset("bundles/mrssge/js/mrs-dataTable.js") }}"></script>
+
+
+{% endblock %}

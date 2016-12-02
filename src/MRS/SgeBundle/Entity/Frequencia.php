@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Frequencia
  *
  * @ORM\Table(name="frequencia", indexes={@ORM\Index(name="fre_codigo_jus_codigo_idx", columns={"justificativa_id"}), @ORM\Index(name="esc_codigo_on_esc_codigo_idx", columns={"escola_id"}), @ORM\Index(name="alu_codigo_on_alu_codigo_idx", columns={"aluno_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MRS\SgeBundle\Repository\FrequenciaRepository")
  */
 class Frequencia
 {
@@ -29,21 +29,21 @@ class Frequencia
     /**
      * @var string
      *
-     * @ORM\Column(name="presenca_falta", type="string", length=1, nullable=false)
+     * @ORM\Column(name="presenca_falta", type="string", length=1, nullable=true)
      */
     private $presencaFalta;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="levar", type="string", length=1, nullable=false)
+     * @ORM\Column(name="levar", type="string", length=1, nullable=true)
      */
     private $levar;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="entregar", type="string", length=1, nullable=false)
+     * @ORM\Column(name="entregar", type="string", length=1, nullable=true)
      */
     private $entregar;
 
@@ -75,6 +75,16 @@ class Frequencia
      * })
      */
     private $escola;
+
+    /**
+     * @var \MRS\SgeBundle\Entity\Turno
+     *
+     * @ORM\ManyToOne(targetEntity="MRS\SgeBundle\Entity\Turno")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="turno_id", referencedColumnName="id")
+     * })
+     */
+    private $turno;
 
     /**
      * @var \MRS\SgeBundle\Entity\Aluno
@@ -280,5 +290,28 @@ class Frequencia
     public function getAluno()
     {
         return $this->aluno;
+    }
+
+    /**
+     * Set turno
+     *
+     * @param \MRS\SgeBundle\Entity\Turno $turno
+     * @return Frequencia
+     */
+    public function setTurno(\MRS\SgeBundle\Entity\Turno $turno = null)
+    {
+        $this->turno = $turno;
+
+        return $this;
+    }
+
+    /**
+     * Get turno
+     *
+     * @return \MRS\SgeBundle\Entity\Turno 
+     */
+    public function getTurno()
+    {
+        return $this->turno;
     }
 }

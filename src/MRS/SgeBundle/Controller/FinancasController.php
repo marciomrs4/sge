@@ -122,6 +122,8 @@ class FinancasController extends Controller
             $data = new \DateTime($contrato->getDataContratoInicial()->format('Y-m-d'));
             $em = $this->getDoctrine()->getManager();
 
+            $data->modify('-1 month');
+
             for($x=1 ; $x <= $parcelas ; $x++) {
 
                 $financa = new Financas();
@@ -139,7 +141,7 @@ class FinancasController extends Controller
 
             $this->addFlash('notice',"Lista financeira do Aluno {$aluno->getNome()} criada com sucesso!");
 
-            return $this->redirectToRoute('cadastro_aluno_show', array('id' => $aluno->getId()));
+            return $this->redirectToRoute('cadastro_contratos_show', array('id' => $contrato->getId()));
         }
 
         return $this->redirectToRoute('cadastro_contratos_show',array('id' => $contrato->getId()));

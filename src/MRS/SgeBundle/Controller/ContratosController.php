@@ -111,7 +111,7 @@ class ContratosController extends Controller
                 array('contrato' => $contrato->getId())))
             ->setMethod('POST')
             ->getForm();
-        
+
 
         $financas = $this->getDoctrine()->getRepository('MRSSgeBundle:Financas')
             ->findBy(array('contrato' => $contrato));

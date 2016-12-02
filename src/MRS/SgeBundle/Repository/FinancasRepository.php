@@ -20,6 +20,8 @@ class FinancasRepository extends EntityRepository
 
         $date = new \DateTime('now');
 
+        //$date->modify('-10 month');
+
         return $this->createQueryBuilder('f')
             ->where('f.status = :status')
             ->andWhere('f.dataVencimento < :hoje')

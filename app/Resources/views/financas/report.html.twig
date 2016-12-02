@@ -85,7 +85,8 @@
                     <th>Aluno</th>
                     <th>Pais</th>
                     <th>Mensalidade</th>
-                    <th>Valor Total Pago</th>
+                    <th>Valor Pago</th>
+                    <th>Valor Pendente</th>
                     <th>Data de Vencimento</th>
                     <th>Data de Pagamento</th>
                     <th>Status</th>
@@ -104,6 +105,7 @@
                         <td>{{ financa.aluno.pais.nome }}</td>
                         <td>{{ financa.aluno.valorMensalidade|number_format(2,',','.') }}</td>
                         <td>{{ financa.valorTotalPago|number_format(2,',','.') }}</td>
+                        <td>{{ (financa.aluno.valorMensalidade - financa.valorTotalPago) | number_format(2,',','.')}}</td>
                         <td>{% if financa.dataVencimento %}{{ financa.dataVencimento|date('d-m-Y') }}{% endif %}</td>
                         <td>{% if financa.dataPagamento %}{{ financa.dataPagamento|date('d-m-Y') }}{% endif %}</td>
                         <td>

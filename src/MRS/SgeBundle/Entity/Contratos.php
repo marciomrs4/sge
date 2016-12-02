@@ -71,6 +71,29 @@ class Contratos
     private $aluno;
 
 
+    public function __construct()
+    {
+        $this->termoCompromisso =
+            '1 - No início do ano letivo deverá ser pago fevereiro e a matrícula;
+2-	O vencimento das mensalidades será todo dia ___ de cada mês. Após esta data terá multa de ___ %;
+3-	As parcelas serão corrigidas toda vez que houver aumento do combustível, ou do Transporte coletivo e dissídio;
+4-	Havendo excursões e passeios, o aluno não será transportado pelo transporte escolar;
+5-	Não nos responsabilizamos pela criança que entra e for dispensado fora do horário.
+6-	O aluno(a) deverá estar pronto na porta de sua residência para que não haja atraso no horário estabelecido pela escola.
+7-	Qualquer aviso importante deverá ser dado com antecedência, por telefone ou pessoalmente.
+8-	Os pais ou responsável deverão indicar o local e a pessoa a quem o aluno poderá ser entregue na ausência dos mesmos. Em hipótese alguma o aluno será entregue a terceiros sem comunicação direta dos pais.
+9-	É reservado ao motorista alterar o horário de pegar e entregar a criança de acordo com o itinerário e trânsito.
+10-	Em período semestral o veículo deverá se apresentar ao CIRETRAN e o INMETRO, para as devidas vistorias obrigatórias, serão dois dias no ano, e nestes dias o transporte não será feito, porém avisaremos com quinze dias de antecedência.
+';
+
+        $this->dataContratoInicial = new \DateTime('now');
+
+        $date = new \DateTime('now');
+        $this->dataContratoFinal = $date->modify('+12 month');
+
+        $this->numeroParcelas = 12;
+    }
+
 
     /**
      * Set termoCompromisso
@@ -88,7 +111,7 @@ class Contratos
     /**
      * Get termoCompromisso
      *
-     * @return string 
+     * @return string
      */
     public function getTermoCompromisso()
     {
@@ -98,7 +121,7 @@ class Contratos
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -121,7 +144,7 @@ class Contratos
     /**
      * Get aluno
      *
-     * @return \MRS\SgeBundle\Entity\Aluno 
+     * @return \MRS\SgeBundle\Entity\Aluno
      */
     public function getAluno()
     {
@@ -144,7 +167,7 @@ class Contratos
     /**
      * Get dataContratoFinal
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDataContratoFinal()
     {
@@ -167,7 +190,7 @@ class Contratos
     /**
      * Get numeroParcelas
      *
-     * @return integer 
+     * @return integer
      */
     public function getNumeroParcelas()
     {
@@ -190,7 +213,7 @@ class Contratos
     /**
      * Get dataContratoInicial
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDataContratoInicial()
     {
@@ -213,7 +236,7 @@ class Contratos
     /**
      * Get financasCriada
      *
-     * @return string 
+     * @return string
      */
     public function getFinancasCriada()
     {
@@ -226,9 +249,9 @@ class Contratos
      * @param string $finalizado
      * @return Contratos
      */
-    public function setFinalizado($finalizada)
+    public function setFinalizado($finalizado)
     {
-        $this->finalizada = $finalizada;
+        $this->finalizado = $finalizado;
 
         return $this;
     }
@@ -236,10 +259,10 @@ class Contratos
     /**
      * Get finalizado
      *
-     * @return string 
+     * @return string
      */
     public function getFinalizado()
     {
-        return $this->finalizada;
+        return $this->finalizado;
     }
 }

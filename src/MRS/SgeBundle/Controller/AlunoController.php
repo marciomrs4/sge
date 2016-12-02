@@ -74,7 +74,7 @@ class AlunoController extends Controller
 
             $this->addFlash('notice','Criado com sucesso!');
 
-            return $this->redirectToRoute('cadastro_pais_show', array('id' => $aluno->getPais()->getId()));
+            return $this->redirectToRoute('cadastro_aluno_show', array('id' => $aluno->getId()));
         }
 
         return $this->render('aluno/new.html.twig', array(

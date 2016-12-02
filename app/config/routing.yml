@@ -1,3 +1,7 @@
+mrs_sge_frequencia:
+    resource: "@MRSSgeBundle/Controller/FrequenciaController.php"
+    type:     annotation
+
 mrs_sge_financas_parcelamento:
     resource: "@MRSSgeBundle/Controller/FinancasParcelamentoController.php"
     type:     annotation
