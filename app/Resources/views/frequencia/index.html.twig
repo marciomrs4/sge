@@ -39,16 +39,15 @@
 
         </div>
 
-        {#{{ dump(fre) }}#}
 
-        {#{{ dump(alunos) }}#}
     {% endblock %}
 
     {% block panelheading %}
 
-        Quantidade Total de Alunos: {{ frequencias|length  }}
+        Quantidade Total de Alunos: {{ alunos|length  }} Foram levados: {{ frequenciaQuantidade.total_levar }} Foram Entregues: {{ frequenciaQuantidade.total_entregar }}
 
     {% endblock %}
+
 
     {% block panelbody %}
         <div class="table-responsive">
@@ -59,54 +58,43 @@
                     <th>Escola</th>
                     <th>Turno</th>
                     <th>Aluno</th>
-                    {#
-                    <th>Levar</th>
-                    <th>Entregar</th>
-                    #}
-                    <th>DATA</th>
+
+                    {#<th>Levar</th>#}
+                    {#<th>Entregar</th>#}
                 </tr>
                 </thead>
                 <tbody>
-                {% for aluno in frequencias %}
-
-                    {% if aluno.levar %}
-                        {% set levar = 'success' %}
-                    {% else %}
-                        {% set levar = 'default' %}
-                    {% endif %}
-
-                    {% if aluno.entregar %}
-                        {% set entregar = 'success' %}
-                    {% else %}
-                        {% set entregar = 'default' %}
-                    {% endif %}
+                {% for aluno in alunos %}
 
                     <tr>
                         <td>
-                            <a href="{{ path('cadastro_frequencia_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">
-                                <span class="glyphicon glyphicon-list"></span>
-                                Justificar
-                            </a>
+                            {#<a href="{{ path('cadastro_frequencia_new', { 'aluno': aluno.id }) }}" class="btn btn-primary btn-sm link-search">#}
+                                {#<span class="glyphicon glyphicon-list"></span>#}
+                                {#Justificar#}
+                            {#</a>#}
 
-                            <a href="{{ path('cadastro_frequencia_levar', { 'aluno': aluno.id }) }}" class="btn btn-{{ levar }} btn-sm link-search">
+                            <a href="{{ path('cadastro_frequencia_levar', { 'aluno': aluno.id }) }}"
+                               class="btn btn-{{ render(controller('MRSSgeBundle:Frequencia:validateLevar',{'aluno':aluno.id})) }} btn-sm link-search">
                                 <span class="glyphicon glyphicon-floppy-disk"></span>
                                 Levar
                             </a>
 
-                            <a href="{{ path('cadastro_frequencia_entregar', { 'aluno': aluno.id }) }}" class="btn btn-{{ entregar }} btn-sm link-search">
+                            <a href="{{ path('cadastro_frequencia_entregar', { 'aluno': aluno.id }) }}"
+                               class="btn btn-{{ render(controller('MRSSgeBundle:Frequencia:validateEntregar',{'aluno':aluno.id})) }} btn-sm link-search">
                                 <span class="glyphicon glyphicon-floppy-disk"></span>
                                 Entregar
                             </a>
-                        </td>
-                        <td>{{ aluno.escola }}</td>
-                        <td>{{ aluno.turno }}</td>
-                        <td>{{ aluno.aluno }}</td>
 
-{#                        <td>{{ aluno.levar }}</td>
-                        <td>{{ aluno.entregar }}</td>
-#}
-                        <td>{{ aluno.dia|date('D') }}</td>
+                        </td>
+                        <td>{{ aluno.escola.nome }}</td>
+                        <td>{{ aluno.turno.descricao }}</td>
+                        <td>{{ aluno.nome }}</td>
+
+                        {#<td>{{ render(controller('MRSSgeBundle:Frequencia:validateLevar',{'aluno':aluno.id})) }}</td>#}
+                        {#<td>{{ render(controller('MRSSgeBundle:Frequencia:validateEntregar',{'aluno':aluno.id})) }}</td>#}
+
                     </tr>
+
                 {% endfor %}
                 </tbody>
             </table>

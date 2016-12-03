@@ -15,32 +15,16 @@ use Doctrine\ORM\EntityRepository;
 class FrequenciaRepository extends EntityRepository
 {
 
-    public function listFrequenciaByTurno($turno)
+    public function countFrequenciaBy($turno, $date)
     {
-        $data = new \DateTime('now');
-
-        $query = "SELECT A.id AS id, A.nome AS aluno, E.nome AS escola, T.descricao AS turno,
-                        (IF (F.dia_semana = :date_dia,F.levar,'')) AS levar,
-                        (IF (F.dia_semana = :date_dia,F.entregar,'')) AS entregar,
-                        (IF (F.dia_semana = :date_dia,F.dia_semana,'')) AS dia
-                    FROM aluno AS A
-                    LEFT join frequencia as F
-                    ON F.aluno_id = A.id
-                    INNER JOIN escola AS E
-                    ON E.id = A.escola_id
-                    INNER JOIN turno AS T
-                    ON T.id = A.turno_id
-                    WHERE A.turno_id = :turno
-                    GROUP BY A.id, F.dia_semana, A.nome, E.nome, T.descricao, F.levar,F.entregar, F.dia_semana";
-
-        $stmt = $this->getEntityManager()
-            ->getConnection()
-            ->prepare($query);
-
-            $stmt->execute(array(':date_dia'=>$data->format('Y-m-d'),
-                                 ':turno' => $turno));
-
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->createQueryBuilder('f')
+            ->select('count(f.entregar) AS total_entregar, count(f.levar) AS total_levar')
+            ->where('f.turno = :turno')
+            ->andWhere('f.diaSemana = :hoje')
+            ->setParameters(array('hoje' => $date,
+                                 'turno' => $turno))
+            ->getQuery()
+            ->getSingleResult();
 
     }
 
