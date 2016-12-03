@@ -19,19 +19,19 @@ class FrequenciaRepository extends EntityRepository
     {
         $data = new \DateTime('now');
 
-        $query = "SELECT A.nome AS aluno, E.nome AS escola, T.descricao AS turno,
-                        (IF (F.dia_semana = :date_dia,F.levar,'')) AS LEVAR,
-                        (IF (F.dia_semana = :date_dia,F.entregar,'')) AS ENTREGAR,
-                        (IF (F.dia_semana = :date_dia,F.dia_semana,'')) AS DIA
+        $query = "SELECT A.id AS id, A.nome AS aluno, E.nome AS escola, T.descricao AS turno,
+                        (IF (F.dia_semana = :date_dia,F.levar,'')) AS levar,
+                        (IF (F.dia_semana = :date_dia,F.entregar,'')) AS entregar,
+                        (IF (F.dia_semana = :date_dia,F.dia_semana,'')) AS dia
                     FROM aluno AS A
-                    RIGHT join frequencia as F
+                    LEFT join frequencia as F
                     ON F.aluno_id = A.id
                     INNER JOIN escola AS E
                     ON E.id = A.escola_id
                     INNER JOIN turno AS T
                     ON T.id = A.turno_id
                     WHERE A.turno_id = :turno
-                    GROUP BY A.id";
+                    GROUP BY A.id, F.dia_semana, A.nome, E.nome, T.descricao, F.levar,F.entregar, F.dia_semana";
 
         $stmt = $this->getEntityManager()
             ->getConnection()

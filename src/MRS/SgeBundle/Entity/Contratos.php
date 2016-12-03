@@ -22,14 +22,14 @@ class Contratos
     /**
      * @var string
      *
-     * @ORM\Column(name="financas_criada", type="text", length=1, nullable=false)
+     * @ORM\Column(name="financas_criada", type="text", length=1, nullable=true)
      */
     private $financasCriada;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="finalizado", type="text", length=1, nullable=false)
+     * @ORM\Column(name="finalizado", type="text", length=1, nullable=true)
      */
     private $finalizado;
 

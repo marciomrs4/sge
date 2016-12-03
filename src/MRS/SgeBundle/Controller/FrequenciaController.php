@@ -34,18 +34,31 @@ class FrequenciaController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-            $alunos = $em->getRepository('MRSSgeBundle:Frequencia')
+            $alunos = $em->getRepository('MRSSgeBundle:Aluno')
+                ->findBy(array('turno'=>$turno),array('id'=>'DESC'));
+
+            $date = new \DateTime('now');
+
+            $fre = $em->getRepository('MRSSgeBundle:Frequencia')
+                ->findBy(array('diaSemana'=>$date, 'turno' => $turno),
+                    array('aluno'=>'DESC'));
+
+            $frequencias = $em->getRepository('MRSSgeBundle:Frequencia')
                 ->listFrequenciaByTurno($turno->getId());
 
             $turnos = $em->getRepository('MRSSgeBundle:Turno')
                 ->findAll();
 
             return $this->render('frequencia/index.html.twig', array(
+                'frequencias' => $frequencias,
+                'turnos' => $turnos,
+                'turnoAtual' => $turno,
                 'alunos' => $alunos,
-                'turnos' => $turnos
+                'fre' => $fre
             ));
         }
     }
+
 
     /**
      * Creates a new Frequencia entity.
@@ -66,12 +79,102 @@ class FrequenciaController extends Controller
             ->setLevar('1')
             ->setPresencaFalta('1');
 
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($frequencium);
+        $em->flush();
+
+        return $this->redirectToRoute('cadastro_frequencia_index',array('turno' => $aluno->getTurno()->getId()));
+
+    }
+
+    /**
+     * Creates a new Frequencia entity.
+     *
+     * @Route("/new/{aluno}/entregar", name="cadastro_frequencia_entregar")
+     * @Method({"GET", "POST"})
+     */
+    public function entregarAction(Aluno $aluno, Request $request)
+    {
+
+        $date = new \DateTime('now');
+        $em = $this->getDoctrine()->getManager();
+
+        $frequencia = $em->getRepository('MRSSgeBundle:Frequencia')
+            ->findOneBy(array('aluno' => $aluno, 'diaSemana' => $date));
+
+        if($request->isMethod('POST')){
+
+            if(!$frequencia){
+
+                $frequencium = new Frequencia();
+
+                $frequencium->setAluno($aluno)
+                    ->setEscola($aluno->getEscola())
+                    ->setTurno($aluno->getTurno())
+                    ->setData($date)
+                    ->setDiaSemana($date)
+                    ->setEntregar('1')
+                    ->setPresencaFalta('1');
+
+
+                $em->persist($frequencium);
+                $em->flush();
+
+                return $this->redirectToRoute('cadastro_frequencia_index',array('turno' => $aluno->getTurno()->getId()));
+            }else {
+
+                $frequencia->setEntregar('1');
+                $em->persist($frequencia);
+                $em->flush();
+
+                return $this->redirectToRoute('cadastro_frequencia_index', array('turno' => $aluno->getTurno()->getId()));
+            }
+        }
+
+
+    }
+
+    /**
+     * Creates a new Frequencia entity.
+     *
+     * @Route("/new/{aluno}/levar", name="cadastro_frequencia_levar")
+     * @Method({"GET", "POST"})
+     */
+    public function levarAction(Aluno $aluno, Request $request)
+    {
+
+        $date = new \DateTime('now');
+        $em = $this->getDoctrine()->getManager();
+
+
+        $frequencia = $em->getRepository('MRSSgeBundle:Frequencia')
+            ->findOneBy(array('aluno' => $aluno, 'diaSemana' => $date));
+
+        if(!$frequencia) {
+
+            $frequencium = new Frequencia();
+
+            $frequencium->setAluno($aluno)
+                ->setEscola($aluno->getEscola())
+                ->setTurno($aluno->getTurno())
+                ->setData($date)
+                ->setDiaSemana($date)
+                ->setLevar('1')
+                ->setPresencaFalta('1');
+
             $em->persist($frequencium);
             $em->flush();
 
-            return $this->redirectToRoute('cadastro_frequencia_index',array('turno' => $aluno->getTurno()->getId()));
+            return $this->redirectToRoute('cadastro_frequencia_index', array('turno' => $aluno->getTurno()->getId()));
+        }else{
 
+            $frequencia->setLevar('1');
+            $em->persist($frequencia);
+            $em->flush();
+
+            return $this->redirectToRoute('cadastro_frequencia_index', array('turno' => $aluno->getTurno()->getId()));
+
+        }
     }
 
     /**
@@ -152,6 +255,6 @@ class FrequenciaController extends Controller
             ->setAction($this->generateUrl('cadastro_frequencia_delete', array('id' => $frequencium->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }
