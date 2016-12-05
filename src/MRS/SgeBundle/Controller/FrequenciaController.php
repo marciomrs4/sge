@@ -14,7 +14,7 @@ use MRS\SgeBundle\Form\FrequenciaType;
 /**
  * Frequencia controller.
  *
- * @Route("/cadastro/frequencia")
+ * @Route("/registro/frequencia")
  */
 class FrequenciaController extends Controller
 {

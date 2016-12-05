@@ -55,9 +55,9 @@
                 <thead>
                 <tr>
                     <th>Ações</th>
+                    <th>Aluno</th>
                     <th>Escola</th>
                     <th>Turno</th>
-                    <th>Aluno</th>
 
                     {#<th>Levar</th>#}
                     {#<th>Entregar</th>#}
@@ -86,9 +86,9 @@
                             </a>
 
                         </td>
+                        <td>{{ aluno.nome }}</td>
                         <td>{{ aluno.escola.nome }}</td>
                         <td>{{ aluno.turno.descricao }}</td>
-                        <td>{{ aluno.nome }}</td>
 
                         {#<td>{{ render(controller('MRSSgeBundle:Frequencia:validateLevar',{'aluno':aluno.id})) }}</td>#}
                         {#<td>{{ render(controller('MRSSgeBundle:Frequencia:validateEntregar',{'aluno':aluno.id})) }}</td>#}

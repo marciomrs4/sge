@@ -31,7 +31,6 @@
                     <th>Roles</th>
                     <th>Status</th>
                     <th>Email</th>
-                    <th>Usuário</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,8 +50,6 @@
                         <td>{% if user.roles %}{{ user.roles|join(', ') }}{% endif %}</td>
                         <td>{% if user.isActive %}Ativo{% else %}Inativo{% endif %}</td>
                         <td>{{ user.email }}</td>
-                        <td>{{ user.usuario }}</td>
-
                     </tr>
                 {% endfor %}
                 </tbody>

@@ -133,10 +133,15 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ path('cadastro_frequencia_index') }}"><i class="fa fa-money"></i>Frequência</a></li>
+
+                        {% if is_granted('ROLE_ADMIN') %}
                         <li><a href="{{ path('cadastro_financas_index') }}"><i class="fa fa-money"></i>Pagamentos</a></li>
                         <li><a href="{{ path('cadastro_financas_report') }}"><i class="fa fa-money"></i>Relatório Financeiro</a></li>
+                        {% endif %}
                     </ul>
                 </li>
+
+{% if is_granted('ROLE_ADMIN') %}
 
                 <li class="treeview">
 
@@ -179,6 +184,7 @@
                         <li><a href="{{ path('admin_usuario_index') }}"><i class="fa fa-male"></i>Login</a></li>
                     </ul>
                 </li>
+ {% endif %}
 
         </section>
         <!-- /.sidebar -->
