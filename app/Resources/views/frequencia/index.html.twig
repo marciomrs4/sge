@@ -44,7 +44,9 @@
 
     {% block panelheading %}
 
-        Quantidade Total de Alunos: {{ alunos|length  }} Foram levados: {{ frequenciaQuantidade.total_levar }} Foram Entregues: {{ frequenciaQuantidade.total_entregar }}
+        Quantidade Total de Alunos: <b>{{ alunos|length  }}</b>
+        Foram levados: <b>{{ frequenciaQuantidade.total_levar }}</b>
+        Foram Entregues: <b>{{ frequenciaQuantidade.total_entregar }}</b>
 
     {% endblock %}
 

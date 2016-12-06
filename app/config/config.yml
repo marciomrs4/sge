@@ -1,5 +1,6 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: heroku_parameters.php }
+#    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
@@ -39,8 +40,8 @@ twig:
     globals:
         namesystem: 'Gestão Escolar'
         sigla: 'GE'
-        company: 'InfTek'
-        phrase: 'Tudo ao seu favor'
+        company: 'Tio da Van'
+        phrase: 'Sistema de Gestão Escolar'
         version: 1.0.0
         teamcreator: 'SGE'
 
