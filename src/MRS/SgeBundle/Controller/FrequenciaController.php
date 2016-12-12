@@ -33,14 +33,16 @@ class FrequenciaController extends Controller
             $turnoEncontrado = $em->getRepository('MRSSgeBundle:Turno')
                 ->finOneByFirstResult();
 
-            return $this->redirectToRoute('cadastro_frequencia_index',array('turno' => $turnoEncontrado->getId()));
+            return $this->redirectToRoute('cadastro_frequencia_index', array(
+                'turno' => $turnoEncontrado->getId()
+            ));
 
         }else {
 
             $em = $this->getDoctrine()->getManager();
 
             $alunos = $em->getRepository('MRSSgeBundle:Aluno')
-                ->findBy(array('turno'=>$turno),array('id'=>'DESC'));
+                ->findBy(array('turno'=>$turno));
 
             $frequenciaQuantidade = $em->getRepository('MRSSgeBundle:Frequencia')
                 ->countFrequenciaBy($turno, date('Y-m-d'));

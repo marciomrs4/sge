@@ -4,6 +4,7 @@
  */
 
 $(".table-datatable").DataTable({
+    "order": [[1,"asc"]],
     "oLanguage": {
         "oPaginate":{
             "sPrevious": "Anterior ",
