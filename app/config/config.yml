@@ -1,6 +1,6 @@
 imports:
-    - { resource: heroku_parameters.php }
-#    - { resource: parameters.yml }
+#    - { resource: heroku_parameters.php }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
