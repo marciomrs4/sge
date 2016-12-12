@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Turno
  *
  * @ORM\Table(name="turno")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MRS\SgeBundle\Repository\TurnoRepository")
  */
 class Turno
 {

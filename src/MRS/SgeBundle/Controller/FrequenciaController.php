@@ -26,9 +26,14 @@ class FrequenciaController extends Controller
      */
     public function indexAction(Turno $turno = null)
     {
+        $em = $this->getDoctrine()->getManager();
+
         if(!$turno){
 
-            return $this->redirectToRoute('cadastro_frequencia_index',array('turno' => 1));
+            $turnoEncontrado = $em->getRepository('MRSSgeBundle:Turno')
+                ->finOneByFirstResult();
+
+            return $this->redirectToRoute('cadastro_frequencia_index',array('turno' => $turnoEncontrado->getId()));
 
         }else {
 
