@@ -64,12 +64,16 @@ class FinancasController extends Controller
         $financas = $em->getRepository('MRSSgeBundle:Financas')
             ->findAllFinancasFiltered($data);
 
-        $somatoria = $em->getRepository('MRSSgeBundle:Financas')
-            ->sumFinancasFiltered($data);
+        $recebido = $em->getRepository('MRSSgeBundle:Financas')
+            ->recebidoNoPeriodo($data);
+
+        $pendente = $em->getRepository('MRSSgeBundle:Financas')
+            ->pendenteNoPeriodo($data);
 
         return $this->render('financas/report.html.twig', array(
             'financas' => $financas,
-            'somatoria' => $somatoria,
+            'recebido' => $recebido,
+            'pendente' => $pendente,
             'formReport' => $formReport->createView()
         ));
     }

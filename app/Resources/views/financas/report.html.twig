@@ -68,10 +68,10 @@
     {% block panelheading %}
         <div class="row">
             <div class="col-md-4">
-                <b>Somatória do período: R$ {{ somatoria.soma|number_format(2,',','.') }}</b>
+                <b>Recebido no período: R$ {{ recebido.soma|number_format(2,',','.') }}</b>
             </div>
             <div class="col-md-4">
-                <b>Média do período: R$ {{ somatoria.media|number_format(2,',','.') }}</b>
+                <b>Pendente no período: R$ {{ pendente.pendente|number_format(2,',','.') }}</b>
             </div>
         </div>
     {% endblock %}
@@ -85,7 +85,7 @@
                     <th>Aluno</th>
                     <th>Pais</th>
                     <th>Mensalidade</th>
-                    <th>Valor Pago</th>
+                    <th>Valor Recebido</th>
                     <th>Valor Pendente</th>
                     <th>Data de Vencimento</th>
                     <th>Data de Pagamento</th>
