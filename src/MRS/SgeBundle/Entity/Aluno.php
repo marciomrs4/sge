@@ -24,7 +24,7 @@ class Aluno
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="data_nascimento", type="date", nullable=false)
+     * @ORM\Column(name="data_nascimento", type="date", nullable=true)
      */
     private $dataNascimento;
 
@@ -45,14 +45,14 @@ class Aluno
     /**
      * @var string
      *
-     * @ORM\Column(name="serie", type="string", length=50, nullable=false)
+     * @ORM\Column(name="serie", type="string", length=50, nullable=true)
      */
     private $serie;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sala", type="string", length=50, nullable=false)
+     * @ORM\Column(name="sala", type="string", length=50, nullable=true)
      */
     private $sala;
 

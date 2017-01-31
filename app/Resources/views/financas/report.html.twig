@@ -68,6 +68,9 @@
     {% block panelheading %}
         <div class="row">
             <div class="col-md-4">
+                <b>À receber no período: R$ {{ pendente.a_receber|number_format(2,',','.') }}</b>
+            </div>
+            <div class="col-md-4">
                 <b>Recebido no período: R$ {{ recebido.soma|number_format(2,',','.') }}</b>
             </div>
             <div class="col-md-4">

@@ -67,7 +67,8 @@ class FinancasRepository extends EntityRepository
     public function pendenteNoPeriodo($data)
     {
         $query = ("SELECT
-                        SUM(AL.valor_mensalidade - (IFNULL(valor_total_pago, 0.00))) AS pendente
+                        SUM(AL.valor_mensalidade - (IFNULL(valor_total_pago, 0.00))) AS pendente,
+                        SUM(AL.valor_mensalidade) AS a_receber
                     FROM
                         financas AS FIN
                             INNER JOIN

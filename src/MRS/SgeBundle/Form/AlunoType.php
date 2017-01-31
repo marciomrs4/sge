@@ -2,8 +2,9 @@
 
 namespace MRS\SgeBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
@@ -40,8 +41,19 @@ class AlunoType extends AbstractType
                                    '0'=>'Inativo')))
             ->add('escola',null,array('label'=>'Escola',
                 'attr'=>array('class'=>'input-sm')))
-            ->add('turno',null,array('label'=>'Turno',
-                'attr'=>array('class'=>'input-sm')))
+            ->add('turno',EntityType::class,array('label'=>'Turno',
+                'attr'=>array('class'=>'input-sm'),
+                'class' => 'MRS\SgeBundle\Entity\Turno',
+//                'query_builder' => function(EntityRepository $er){
+//                    return $er->createQueryBuilder('t')
+//                        ->getEntityManager()
+//                        ->getRepository('MRSSgeBundle:TurnoHasEscola')
+//                        ->createQueryBuilder('turnoEscola')
+//                        ->innerJoin('turnoEscola.turno','TE')
+//
+//                        ->where('turnoEscola.escola = :escola')
+//                        ->setParameter('escola',1);
+                ))
         ;
     }
 
