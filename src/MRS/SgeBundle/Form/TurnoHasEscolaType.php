@@ -3,6 +3,7 @@
 namespace MRS\SgeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +16,7 @@ class TurnoHasEscolaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('turno',null,array('label'=>'turno',
+            ->add('turno',TextType::class,array('label'=>'turno',
                                            'attr'=>array('class'=>'input-sm')))
         ;
     }

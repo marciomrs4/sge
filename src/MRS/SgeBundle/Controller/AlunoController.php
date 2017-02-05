@@ -124,11 +124,30 @@ class AlunoController extends Controller
     public function editAction(Request $request, Aluno $aluno)
     {
         $deleteForm = $this->createDeleteForm($aluno);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $turnoEscola = $em->getRepository('MRSSgeBundle:TurnoHasEscola')
+            ->findOneBy(array('escola' => $aluno->getEscola(),
+                             'turno' => $aluno->getTurno()));
+
         $editForm = $this->createForm('MRS\SgeBundle\Form\AlunoType', $aluno);
+
+        $editForm->get('turnoEscola')->setData($turnoEscola);
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            $alunoForm = $request->request->get('aluno');
+
+
+            $turnoEscola = $em->getRepository('MRSSgeBundle:TurnoHasEscola')
+                ->find($alunoForm['turnoEscola']);
+
+            $aluno->setEscola($turnoEscola->getEscola())
+                  ->setTurno($turnoEscola->getTurno());
+
             $em->persist($aluno);
             $em->flush();
 
