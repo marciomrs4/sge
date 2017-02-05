@@ -100,4 +100,9 @@ class TurnoHasEscola
     {
         return $this->escola;
     }
+
+    public function __toString()
+    {
+        return $this->getTurno()->getDescricao().' / '.$this->getEscola()->getNome();
+    }
 }

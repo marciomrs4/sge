@@ -64,11 +64,26 @@ class AlunoController extends Controller
     {
         $aluno = new Aluno();
         $form = $this->createForm('MRS\SgeBundle\Form\AlunoType', $aluno);
+
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $alunoForm = $request->request->get('aluno');
+
+            //dump($aluno['turnoEscola']); exit();
+
             $em = $this->getDoctrine()->getManager();
-            $aluno->setPais($pai);
+
+            $turnoEscola = $em->getRepository('MRSSgeBundle:TurnoHasEscola')
+                ->find($alunoForm['turnoEscola']);
+
+
+            $aluno->setPais($pai)
+                  ->setEscola($turnoEscola->getEscola())
+                  ->setTurno($turnoEscola->getTurno());
+
             $em->persist($aluno);
             $em->flush();
 

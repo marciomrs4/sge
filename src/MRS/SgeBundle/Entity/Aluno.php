@@ -82,7 +82,7 @@ class Aluno
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="turno_id", referencedColumnName="id")
      * })
-     * @Assert\NotBlank(message="O Turno é obrigatório")
+     *
      */
     private $turno;
 
@@ -103,7 +103,7 @@ class Aluno
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="escola_id", referencedColumnName="id")
      * })
-     * @Assert\NotBlank(message="A Escola é obrigatória")
+     *
      */
     private $escola;
 
