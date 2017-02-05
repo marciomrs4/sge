@@ -68,7 +68,7 @@
                         </td>
                         <td>{{ aluno.nome }}</td>
                         <td>{% if aluno.dataNascimento %}{{ aluno.dataNascimento|date('d-m-Y') }}{% endif %}</td>
-                        <td>{{ aluno.valorMensalidade|number_format(2,',','.') }}</td>
+                        <td>R$ {{ aluno.valorMensalidade|number_format(2,',','.') }}</td>
                         <td>{% if aluno.vencimento %}{{ aluno.vencimento|date('d-m-Y') }}{% endif %}</td>
                         <td>{{ aluno.serie }}</td>
                         <td>{{ aluno.sala }}</td>

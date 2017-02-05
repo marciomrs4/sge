@@ -32,6 +32,7 @@ class Aluno
      * @var string
      *
      * @ORM\Column(name="valor_mensalidade", type="decimal", precision=10, scale=2, nullable=false)
+     * @Assert\NotBlank(message="O valor é obrigatório")
      */
     private $valorMensalidade;
 
@@ -39,6 +40,7 @@ class Aluno
      * @var \DateTime
      *
      * @ORM\Column(name="vencimento", type="date", nullable=false)
+     * @Assert\NotBlank(message="A data de vencimento é obrigatório")
      */
     private $vencimento;
 
@@ -60,6 +62,7 @@ class Aluno
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=1, nullable=false)
+     * @Assert\NotBlank(message="O Status é obrigatório")
      */
     private $status;
 

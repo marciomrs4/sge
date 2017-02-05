@@ -25,6 +25,7 @@ class Pais
      * @var string
      *
      * @ORM\Column(name="telefone1", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Este número de telefone é obrigatário")
      */
     private $telefone1;
 

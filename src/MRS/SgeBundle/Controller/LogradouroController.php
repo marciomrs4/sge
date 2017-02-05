@@ -67,6 +67,7 @@ class LogradouroController extends Controller
 
         return $this->render('logradouro/new.html.twig', array(
             'logradouro' => $logradouro,
+            'pai' => $pai,
             'form' => $form->createView(),
         ));
     }

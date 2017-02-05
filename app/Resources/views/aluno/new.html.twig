@@ -45,3 +45,21 @@
     {{ form_end(form) }}
 
     {% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/mrssge/js/jquery.mask.js') }}"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+            $('#aluno_valorMensalidade').mask('000.000.000.000.000,00', {reverse: true});
+
+        });
+
+    </script>
+
+{% endblock %}
