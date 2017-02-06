@@ -88,13 +88,14 @@
     {{ parent() }}
 
     <script src="{{ asset('bundles/mrssge/js/jquery.mask.js') }}"></script>
+    <script src="{{ asset('bundles/mrssge/js/select2.js') }}"></script>
 
     <script>
 
         $(document).ready(function(){
 
             $('#aluno_valorMensalidade').mask('000.000.000.000.000,00', {reverse: true});
-
+            $('#aluno_turnoEscola').select2();
         });
 
     </script>
