@@ -18,9 +18,9 @@ class PaisType extends AbstractType
         $builder
             ->add('nome',null,array('label'=>'nome',
                 'attr'=>array('class'=>'input-sm')))
-            ->add('telefone1',null,array('label'=>'telefone1',
+            ->add('telefone1',null,array('label'=>'Celular',
                 'attr'=>array('class'=>'input-sm')))
-            ->add('telefone2',null,array('label'=>'telefone2',
+            ->add('telefone2',null,array('label'=>'Telefone',
                 'attr'=>array('class'=>'input-sm')))
             ->add('rg',null,array('label'=>'rg',
                 'attr'=>array('class'=>'input-sm')))

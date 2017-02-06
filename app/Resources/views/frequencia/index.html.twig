@@ -45,8 +45,8 @@
     {% block panelheading %}
 
         Quantidade Total de Alunos: <b>{{ alunos|length  }}</b>
-        Foram levados: <b>{{ frequenciaQuantidade.total_levar }}</b>
-        Foram Entregues: <b>{{ frequenciaQuantidade.total_entregar }}</b>
+        Presentes: <b>{{ frequenciaQuantidade.total_levar }}</b>
+        Ausentes: <b>{{ frequenciaQuantidade.total_entregar }}</b>
 
     {% endblock %}
 
@@ -78,13 +78,13 @@
                             <a href="{{ path('cadastro_frequencia_levar', { 'aluno': aluno.id }) }}"
                                class="btn btn-{{ render(controller('MRSSgeBundle:Frequencia:validateLevar',{'aluno':aluno.id})) }} btn-sm link-search">
                                 <span class="glyphicon glyphicon-floppy-disk"></span>
-                                Levar
+                                P
                             </a>
 
                             <a href="{{ path('cadastro_frequencia_entregar', { 'aluno': aluno.id }) }}"
                                class="btn btn-{{ render(controller('MRSSgeBundle:Frequencia:validateEntregar',{'aluno':aluno.id})) }} btn-sm link-search">
                                 <span class="glyphicon glyphicon-floppy-disk"></span>
-                                Entregar
+                                F
                             </a>
 
                         </td>
