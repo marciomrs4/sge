@@ -17,7 +17,6 @@ class Financas
      * @var string
      *
      * @ORM\Column(name="valor_total_pago", type="decimal", precision=10, scale=2, nullable=true)
-     * @Assert\NotBlank(message="Valor é obrigatório")
      */
     private $valorTotalPago;
 

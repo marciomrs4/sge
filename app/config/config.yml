@@ -40,7 +40,7 @@ twig:
     globals:
         namesystem: 'Gestão Escolar'
         sigla: 'GE'
-        company: 'Tio da Van'
+        company: 'SGE'
         phrase: 'Sistema de Gestão Escolar'
         version: 1.0.0
         teamcreator: 'SGE'

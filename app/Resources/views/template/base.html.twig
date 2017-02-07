@@ -232,7 +232,11 @@
                                     <!-- Add the bg color to the header using any of the bg-* classes -->
                                     <div class="widget-user-header bg-aqua-active">
                                         <h3 class="widget-user-username">
-                                            <strong>{{ company }}</strong>
+                                            <strong>Tio(a)
+                                                {% if app.user %}
+                                                    {{ app.user.username }}
+                                                {% endif %}
+                                            </strong>
                                         </h3>
                                         <h5 class="widget-user-desc">
                                             {{ phrase }}

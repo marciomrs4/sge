@@ -39,22 +39,7 @@ class AlunoType extends AbstractType
             ->add('status',ChoiceType::class,array('label'=>'Status',
                   'choices' => array('1'=>'Ativo',
                                    '0'=>'Inativo')))
-//            ->add('escola',null,array('label'=>'Escola',
-//                'attr'=>array('class'=>'input-sm')))
-//            ->add('turno',EntityType::class,array('label'=>'Turno',
-//                'attr'=>array('class'=>'input-sm'),
-//                'class' => 'MRS\SgeBundle\Entity\Turno',
-//                'query_builder' => function(EntityRepository $er){
-//                    return $er->createQueryBuilder('t')
-//                        ->getEntityManager()
-//                        ->getRepository('MRSSgeBundle:TurnoHasEscola')
-//                        ->createQueryBuilder('turnoEscola')
-//                        ->innerJoin('turnoEscola.turno','TE')
-//
-//                        ->where('turnoEscola.escola = :escola')
-//                        ->setParameter('escola',1);
-//                ))
-            ->add('turnoEscola',EntityType::class,array('label'=>'Turno / Escola',
+            ->add('turnoEscola',EntityType::class,array('label'=>'Escola / Turno',
                 'class' => 'MRS\SgeBundle\Entity\TurnoHasEscola',
                 'mapped' => false
             ))

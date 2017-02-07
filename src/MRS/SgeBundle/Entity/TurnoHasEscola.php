@@ -103,6 +103,6 @@ class TurnoHasEscola
 
     public function __toString()
     {
-        return $this->getTurno()->getDescricao().' / '.$this->getEscola()->getNome();
+        return $this->getEscola()->getNome().' / '.$this->getTurno()->getDescricao();
     }
 }

@@ -29,7 +29,7 @@ class AlunoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $alunos = $em->getRepository('MRSSgeBundle:Aluno')
-            ->findAll();
+            ->findBy(array('status' => 1));
 
         return $this->render('aluno/listaralunos.html.twig', array(
             'alunos' => $alunos,
@@ -109,8 +109,13 @@ class AlunoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($aluno);
 
+        $logradouro = $this->getDoctrine()
+            ->getRepository('MRSSgeBundle:Logradouro')
+            ->findOneBy(array('pais' => $aluno->getPais()));
+
         return $this->render('aluno/show.html.twig', array(
             'aluno' => $aluno,
+            'logradouro' => $logradouro,
             'delete_form' => $deleteForm->createView(),
         ));
     }

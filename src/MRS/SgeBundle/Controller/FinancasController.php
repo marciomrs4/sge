@@ -236,6 +236,8 @@ class FinancasController extends Controller
      */
     public function deleteAction(Request $request, Financas $financa)
     {
+        $contradoId = $financa->getContrato()->getId();
+
         $form = $this->createDeleteForm($financa);
         $form->handleRequest($request);
 
@@ -245,7 +247,7 @@ class FinancasController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('cadastro_financas_index');
+        return $this->redirectToRoute('cadastro_contratos_show',array('id' => $contradoId));
     }
 
     /**
